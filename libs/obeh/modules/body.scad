@@ -1,4 +1,4 @@
-// This file models the base of the guillotine for oboe and English horn.
+// This file models the main body of the guillotine for oboe and English horn.
 
 include <BOSL2/std.scad>
 
@@ -28,4 +28,33 @@ module notch(length, width, height,
         translate([length + content_bar_distance, 0, 0])
             text3d(content, h=height, size=font_size, anchor=LEFT+BOTTOM, atype="ycenter");
     }
+}
+
+
+module build_body(
+    length, width, base_height, base_corner_fillet_radius, base_edge_chamfer,
+    slot_top_width, 
+
+) {
+    /*
+    This module models the base of the guillotine for oboe and English horn.
+
+    Args:
+        length: float, length of the base
+        width: float, width of the base
+        base_height: float, height of the base
+        base_corner_fillet_radius: float, fillet radius of the corners of the base
+        base_edge_chamfer: float, chamfer distance of the edges of the base
+
+    */
+
+
+    union(){
+        // build the base of the body
+
+
+    }
+
+    // build
+
 }
