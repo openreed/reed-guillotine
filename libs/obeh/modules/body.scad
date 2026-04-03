@@ -48,6 +48,8 @@ module build_body(
     scale_font_distance=0.6, scale_font_size=4,
     // blade stand parameters
     stand_length=30, stand_height=25, 
+    stand_side_wall_thickness=15, stand_back_wall_thickness=4,
+
 
     // handle parameters
     handle_axis_x_position=21, handle_axis_z_position=29, handle_axis_diameter=9, handle_axis_hole_tolerance=0.1,
@@ -127,10 +129,10 @@ module build_body(
                     );
                     // fillet the two top edges of the slot
                     translate([0,-(slot_top_width/2+slot_top_corner_fillet_length)+0.01,0]) rotate([-90,0,0])
-                        rounding_edge_mask(l=slot_length, r=slot_top_corner_fillet+0.01, ang=slot_bottom_angle, orient=RIGHT, anchor=RIGHT+TOP);
+                        rounding_edge_mask(l=slot_length+0.01, r=slot_top_corner_fillet+0.01, ang=slot_bottom_angle, orient=RIGHT, anchor=RIGHT+TOP);
                     
                     translate([0,+(slot_top_width/2+slot_top_corner_fillet_length)+0.01,0]) rotate([-90,0,0])
-                        rounding_edge_mask(l=slot_length, r=slot_top_corner_fillet+0.01, ang=slot_bottom_angle, orient=LEFT, anchor=RIGHT+BOTTOM);
+                        rounding_edge_mask(l=slot_length+0.01, r=slot_top_corner_fillet+0.01, ang=slot_bottom_angle, orient=LEFT, anchor=RIGHT+BOTTOM);
                 }
 
         }
@@ -165,6 +167,13 @@ module build_body(
                     h=width+0.02, 
                     r=handle_axis_diameter/2+handle_axis_hole_tolerance, 
                     anchor=BOTTOM);
+
+            // cut the internal space
+            translate([length-slot_length+0.02, width/2, base_height+0.01])
+                cuboid(
+                    size=[stand_length-stand_back_wall_thickness+0.02, width-2*stand_side_wall_thickness, stand_height+0.01], 
+                    anchor=RIGHT+BOTTOM
+                );
         }
     }
 
