@@ -2,6 +2,7 @@
 
 include <BOSL2/std.scad>
 
+include <../params.scad>
 use <../../utils/utils.scad>
 
 
@@ -36,67 +37,9 @@ module scale(length, width, height,
 }
 
 
-module build_body(
-    // base parameters
-    length=132, width=46, base_height=10, base_corner_fillet=10, base_edge_chamfer=1,
-    // slot parameters
-    slot_top_width=16, slot_bottom_angle=72, slot_length=92, slot_height=4, slot_top_corner_fillet=0.4,
-    // scale parameters
-    scale_zero_x_position=37, scale_tolerance=0.3, scale_range=[30,80],
-    scale_bar_major_length=6, scale_bar_submajor_length=5.2, scale_bar_minor_length=4.6, scale_bar_minor_length_diff=0.35,
-    scale_bar_width=0.4, scale_bar_height=0.4,
-    scale_font_distance=0.6, scale_font_size=4,
-    // blade stand parameters
-    stand_length=30, stand_height=25, 
-    stand_side_wall_thickness=15, stand_back_wall_thickness=4,
-
-
-    // handle parameters
-    handle_axis_x_position=21, handle_axis_z_position=29, handle_axis_diameter=9, handle_axis_hole_tolerance=0.1,
-
-    // blade holder parameters
-
-    // lid parameters
-
-    
-
-) {
+module build_body() {
     /*
     This module models the base of the guillotine for oboe and English horn.
-
-    Args:
-        Base parameters:
-            length: float, length of the base
-            width: float, width of the base
-            base_height: float, height of the base
-            base_corner_fillet: float, fillet radius of the corners of the base
-            base_edge_chamfer: float, chamfer distance of the edges of the base
-        Slot parameters:
-            slot_top_width: float, width of the top of the slot for the reed holder
-            slot_bottom_angle: float, angle between the bottom and the side of the slot for the reed holder, in degree
-            slot_length: float, length of the slot for the reed holder
-            slot_height: float, height of the slot for the reed holder
-            slot_top_corner_fillet: float, fillet radius of the two top edges of the slot for the reed holder
-        Scale parameters:
-            scale_zero_x_position: float, x position of the zero point of the scale, i.e., the coordinate of the blade
-            scale_tolerance: float, tolerance of the scale, positive values will make the scale bars longer, while negative values will make the scale bars shorter
-            scale_range: list of two integers, the minimum and maximum values on the scale
-            scale_bar_major_length: float, length of the scale bars for those scale values that are multiples of 10, i.e., 30, 40, 50
-            scale_bar_submajor_length: float, length of the scale bars for those scale values that are multiples of 5 but not multiples of 10, i.e., 35, 45, 55
-            scale_bar_minor_length: float, length of the scale bars for those scale values satisfying {value - 1 mod 5 == 0}, i.e., 31, 36, 41, 46, 51
-            scale_bar_minor_length_diff: float, lengths of the other scale bars equal to {scale_bar_minor_length - scale_bar_minor_length_diff * x}, 
-                where x = |value - minor_value|, where minor_value is the closest value that satisfies {(value - 1) mod 5 == 0} and larger than value. 
-            scale_bar_width: float, width of the scale bars
-            scale_bar_height: float, height of the scale bars
-            scale_font_distance: float, distance between the scale bars and the text content on the scale bars
-            scale_font_size: float, font size of the text content on the scale bars, approximately equals to the height of the text content, refer to BOSL2 documentation for more details
-        Blade stand parameters:
-
-        Handle parameters:
-            handle_axis_x_position: float, x coordinate of the center of the handle axis
-            handle_axis_z_position: float, z coordinate of the center of the handle axis
-            handle_axis_diameter: float, diameter of the handle axis
-            handle_axis_hole_tolerance: float, tolerance for the hole of the handle axis, positive values will make the hole larger, while negative values will make the hole smaller
     */
 
     // define internal variables
@@ -152,31 +95,6 @@ module build_body(
                 }
         }
     }
-
-
-    // build the blade stand
-    union() {
-        difference() {
-            // basic cube
-            translate([length-slot_length+0.01, width/2, base_height/2])
-                cube([stand_length+0.01, width, stand_height+base_height/2], anchor=RIGHT+BOTTOM);
-
-            // cut the handle axis hole
-            translate([handle_axis_x_position, -0.01, handle_axis_z_position]) rotate([-90,0,0])
-                cylinder(
-                    h=width+0.02, 
-                    r=handle_axis_diameter/2+handle_axis_hole_tolerance, 
-                    anchor=BOTTOM);
-
-            // cut the internal space
-            translate([length-slot_length+0.02, width/2, base_height+0.01])
-                cuboid(
-                    size=[stand_length-stand_back_wall_thickness+0.02, width-2*stand_side_wall_thickness, stand_height+0.01], 
-                    anchor=RIGHT+BOTTOM
-                );
-        }
-    }
-
 
 
 }
