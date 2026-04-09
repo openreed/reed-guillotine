@@ -62,6 +62,8 @@ scale_font_size=4;
 blade_length=39;
 // 刀片宽度 | Width of the blade
 blade_width=19;
+// 刀片厚度 | Thickness of the blade
+blade_thickness=0.23;
 // 刀片上孔的直径 | Diameter of the hole on the blade
 hole_diameter=2;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
