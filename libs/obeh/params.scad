@@ -22,6 +22,8 @@ base_height=10;
 base_corner_fillet=10;
 // 基座边缘的倒角距离 | Chamfer distance of the edges of the base
 base_edge_chamfer=1;
+// 基座底部空洞的长度 | Length of the hole at the bottom of the base
+bottom_hole_length=15;
 
 /*[滑槽参数 | Slot Parameters]*/
 // 滑槽顶部的宽度 | Width of the top of the slot for the reed holder
@@ -38,6 +40,8 @@ slot_top_corner_fillet=0.4;
 /*[刻度参数 | Scale Parameters]*/
 // 刻度零点的x坐标，即刀片所在位置的坐标 | x position of the zero point of the scale, i.e., the coordinate of the blade
 scale_zero_x_position=37;
+// 刻度零点的z坐标，即刀片顶部高度 | z position of the zero point of the scale, i.e., the height of the top of the blade
+scale_zero_z_position=21;
 // 刻度的范围，单位为毫米 | Range of the scale, in millimeter
 scale_range=[30,80];
 // 主要刻度线的长度，即那些刻度值为10的倍数的刻度线的长度 | Length of the scale bars for those scale values that are multiples of 10, i.e., 30, 40, 50

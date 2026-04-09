@@ -77,6 +77,13 @@ module build_body() {
                     translate([0,+(slot_top_width/2+slot_top_corner_fillet_length)+0.01,0]) rotate([-90,0,0])
                         rounding_edge_mask(l=slot_length+0.01, r=slot_top_corner_fillet+0.01, ang=slot_bottom_angle, orient=LEFT, anchor=RIGHT+BOTTOM);
                 }
+            
+            // bottom hole
+            translate([scale_zero_x_position + blade_thickness/2, width/2, -0.01])
+                cube(
+                    size=[bottom_hole_length, blade_length+0.01, base_height+0.02], 
+                    anchor=RIGHT+BOTTOM
+                );
 
         }
 
@@ -94,6 +101,15 @@ module build_body() {
                     scale(length=max(scale_bar_minor_length - scale_bar_minor_length_diff * abs(i - (floor(i/5)*5+1)), 0), width=scale_bar_width, height=scale_bar_height, content=false);
                 }
         }
+        
+        // blade holder
+        cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
+        translate([length-slot_length+0.01, width/2, base_height/2])
+            cube(
+                size=[cutting_block_length + 0.01, width, scale_zero_z_position - blade_protrusion_length - base_height/2], 
+                anchor=RIGHT+BOTTOM
+            );
+
     }
 
 
