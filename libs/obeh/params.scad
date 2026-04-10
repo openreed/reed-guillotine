@@ -88,7 +88,7 @@ back_clamp_width=7;
 // 刀片突出部分的长度 | Length of the blade protrusion, which is the part of the blade that protrudes from the blade holder and can cut the reed
 blade_protrusion_length=2;
 // 刀片夹具的高度 | Height of the blade holder
-blade_holder_height=4;
+test_blade_holder_height=4;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=1.5;
 // 刀片夹片的高度 | Height of the blade clamp

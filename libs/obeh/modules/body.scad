@@ -4,6 +4,7 @@ include <BOSL2/std.scad>
 
 include <../params.scad>
 use <../../utils/utils.scad>
+use <blade_holder.scad>
 
 
 module scale(length, width, height, 
@@ -44,7 +45,7 @@ module build_body() {
 
     // define internal variables
     slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
-
+    cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 
     // build the base of the body
     union() {
@@ -79,9 +80,9 @@ module build_body() {
                 }
             
             // bottom hole
-            translate([scale_zero_x_position + blade_thickness/2, width/2, -0.01])
+            translate([scale_zero_x_position + blade_thickness/2 + cutting_block_length/2, width/2, -0.01])
                 cube(
-                    size=[bottom_hole_length, blade_length+0.01, base_height+0.02], 
+                    size=[bottom_hole_length + cutting_block_length/2, blade_length+0.01, base_height+0.02], 
                     anchor=RIGHT+BOTTOM
                 );
 
@@ -103,12 +104,9 @@ module build_body() {
         }
         
         // blade holder
-        cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
-        translate([length-slot_length+0.01, width/2, base_height/2])
-            cube(
-                size=[cutting_block_length + 0.01, width, scale_zero_z_position - blade_protrusion_length - base_height/2], 
-                anchor=RIGHT+BOTTOM
-            );
+        translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
+        rotate([90,0,-90])
+            blade_holder(height=cutting_block_length);
 
     }
 
