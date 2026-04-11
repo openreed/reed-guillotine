@@ -1,6 +1,6 @@
 // 该文件包括了哨片断头台的参数 | This file includes parameters of the guillotine for the blade.
 
-/*[微调参数 | Finetuning Parameters]*/
+/*[公差 | Tolerances]*/
 // 刻度的公差，正值会使刻度远离零刻线，负值会使刻度靠近零刻线 | Tolerance of the scale, positive values will make the scale bars come farther from the zero point, while negative values will make the scale bars come closer to the zero point
 scale_tolerance=0.3;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
@@ -23,7 +23,7 @@ base_corner_fillet=10;
 // 基座边缘的倒角距离 | Chamfer distance of the edges of the base
 base_edge_chamfer=1;
 // 基座底部空洞的长度 | Length of the hole at the bottom of the base
-bottom_hole_length=15;
+bottom_hole_length=10;
 
 /*[滑槽参数 | Slot Parameters]*/
 // 滑槽顶部的宽度 | Width of the top of the slot for the reed holder
@@ -92,4 +92,4 @@ test_blade_holder_height=4;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=1.5;
 // 刀片夹片的高度 | Height of the blade clamp
-blade_clamp_height=3;
+blade_clamp_height=2;

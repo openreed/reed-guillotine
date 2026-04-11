@@ -107,6 +107,11 @@ module build_body() {
         translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
         rotate([90,0,-90])
             blade_holder(height=cutting_block_length);
+        translate([length-slot_length+0.01, width/2, 0])
+            cuboid(
+                size=[cutting_block_length+blade_thickness+blade_clamp_height, blade_length+0.01, scale_zero_z_position-blade_width],
+                anchor=BOTTOM+RIGHT
+            );
 
     }
 
