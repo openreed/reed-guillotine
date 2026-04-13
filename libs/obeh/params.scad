@@ -41,7 +41,7 @@ slot_top_corner_fillet=0.4;
 // 刻度零点的x坐标，即刀片所在位置的坐标 | x position of the zero point of the scale, i.e., the coordinate of the blade
 scale_zero_x_position=37;
 // 刻度零点的z坐标，即刀片顶部高度 | z position of the zero point of the scale, i.e., the height of the top of the blade
-scale_zero_z_position=21;
+scale_zero_z_position=20;
 // 刻度的范围，单位为毫米 | Range of the scale, in millimeter
 scale_range=[30,80];
 // 主要刻度线的长度，即那些刻度值为10的倍数的刻度线的长度 | Length of the scale bars for those scale values that are multiples of 10, i.e., 30, 40, 50
@@ -87,9 +87,11 @@ back_clamp_width=7;
 /*[刀片夹具参数 | Blade Holder Parameters]*/
 // 刀片突出部分的长度 | Length of the blade protrusion, which is the part of the blade that protrudes from the blade holder and can cut the reed
 blade_protrusion_length=2;
-// 刀片夹具的高度 | Height of the blade holder
-test_blade_holder_height=4;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=1.5;
 // 刀片夹片的高度 | Height of the blade clamp
 blade_clamp_height=2;
+
+
+/*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
+upper_blade_holder_total_height=8;

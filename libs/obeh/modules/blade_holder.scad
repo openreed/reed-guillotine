@@ -33,7 +33,7 @@ module side_notch_clamp(
 }
 
 
-module blade_holder(height) {
+module bottom_blade_holder(height) {
     difference() {
         // body
         cuboid(
@@ -78,7 +78,7 @@ module blade_holder(height) {
 }
 
 
-module test_blade_clamp() {
+module blade_clamp() {
     difference() {
         // basic cuboid
         cuboid(
@@ -117,7 +117,18 @@ module test_blade_clamp() {
 }
 
 
-blade_holder(height=test_blade_holder_height);
+module upper_blade_holder(total_height, ){
+    translate([0, blade_width-blade_protrusion_length, 0])
+    rotate([0,0,180])
+        bottom_blade_holder(height=total_height);
+    
+    
+
+}
+
+
 
 translate([0, -20, 0]) 
-    test_blade_clamp();
+    blade_clamp();
+
+upper_blade_holder(total_height = upper_blade_holder_total_height);
