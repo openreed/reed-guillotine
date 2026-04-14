@@ -9,6 +9,8 @@ side_notch_tolerance=0.1;
 back_clamp_thickness_tolerance=0.5;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
 back_clamp_width_tolerance=0.2;
+// 底部刀片座相对于刀片+夹片的厚度所增加的长度 | Length of the bottom blade clamp, which is the part of the blade that protrudes from the blade holder and can cut the reed
+bottom_blade_seat_tolerance=1;
 
 
 /*[基座参数 | Base Parameters]*/
@@ -95,3 +97,23 @@ blade_clamp_height=2;
 
 /*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
 upper_blade_holder_total_height=8;
+
+
+/*[墙参数 | Wall Parameters]*/
+// 墙长度 | Length of the walls
+wall_length=20;
+// 墙高度 | Height of the walls
+wall_height=25;
+// 墙厚度 | Thickness of the walls
+wall_thickness=10;
+
+
+/*[手柄参数 | Handle Parameters]*/
+// 手柄转轴中心x坐标 | x position of the center of the handle axis
+handle_axis_x_position=21;
+// 手柄转轴中心z坐标 | z position of the center of the handle axis
+handle_axis_z_position=29;
+// 手柄转轴直径 | Diameter of the handle axis
+handle_axis_diameter=10;
+// 手柄转轴孔公差 | Tolerance of the hole for the handle axis
+handle_axis_hole_tolerance=0.1;

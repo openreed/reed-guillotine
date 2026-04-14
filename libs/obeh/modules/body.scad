@@ -103,15 +103,39 @@ module build_body() {
                 }
         }
         
-        // blade holder
+        // bottom blade holder
         translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
         rotate([90,0,-90])
             bottom_blade_holder(height=cutting_block_length);
         translate([length-slot_length+0.01, width/2, 0])
             cuboid(
-                size=[cutting_block_length+blade_thickness+blade_clamp_height, blade_length+0.01, scale_zero_z_position-blade_width],
+                size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance, blade_length+0.01, scale_zero_z_position-blade_width],
                 anchor=BOTTOM+RIGHT
             );
+        
+        // walls, which hold the upper blade holder and the handle
+        difference() {
+            // basic walls
+            union() {
+                // left wall
+                difference() {
+                    translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01, 0, 0])
+                        cuboid(
+                            size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
+                            anchor=RIGHT+BOTTOM+FRONT
+                        );
+                    // chamfer the edge
+                    translate([(scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01) - 0.5*(wall_length+0.01), 0, 0])
+                        chamfer_edge_mask(
+                            l = wall_length+0.02, 
+                            chamfer=base_edge_chamfer + 0.01, 
+                            orient=RIGHT,
+                        );
+                }
+                
+
+            }
+        }
 
     }
 
