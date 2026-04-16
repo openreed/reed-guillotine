@@ -78,24 +78,24 @@ module bottom_blade_holder(height) {
 }
 
 
-module blade_clamp() {
+module blade_clamp(height) {
     difference() {
         // basic cuboid
         cuboid(
-            size=[blade_length, blade_width-blade_protrusion_length, blade_clamp_height], 
+            size=[blade_length, blade_width-blade_protrusion_length, height], 
             anchor=BOTTOM+FRONT,
         );
 
         // blade hole
         translate([0, blade_width-hole_edge_distance, -0.01])
-            cylinder(d=hole_diameter, h=blade_clamp_height+0.02, anchor=BOTTOM, $fa=0.5, $fs=0.1);
+            cylinder(d=hole_diameter, h=height+0.02, anchor=BOTTOM, $fa=0.5, $fs=0.1);
 
         // side notches
         translate([-blade_length/2 - 0.01, blade_width-side_notch_edge_distance, -0.01])
             side_notch_clamp(
                 width=side_notch_width - side_notch_tolerance, 
                 length=side_notch_length - side_notch_tolerance, 
-                height=blade_clamp_height+0.02
+                height=height+0.02
             );
         
         translate([blade_length/2 + 0.01, blade_width-side_notch_edge_distance, -0.01])
@@ -103,11 +103,11 @@ module blade_clamp() {
             side_notch_clamp(
                 width=side_notch_width + side_notch_tolerance, 
                 length=side_notch_length + side_notch_tolerance + 0.01, 
-                height=blade_clamp_height+0.02
+                height=height+0.02
             );
         
         // blade back clamp
-        translate([0, -0.01, blade_clamp_height-back_clamp_thickness-back_clamp_thickness_tolerance])
+        translate([0, -0.01, height-back_clamp_thickness-back_clamp_thickness_tolerance])
             cuboid(
                 size=[blade_length+0.01, back_clamp_width+back_clamp_width_tolerance+0.01, back_clamp_thickness+back_clamp_thickness_tolerance+0.01], 
                 anchor=FRONT+BOTTOM
@@ -120,7 +120,7 @@ module blade_clamp() {
 module upper_blade_holder(total_height, ){
     translate([0, blade_width-blade_protrusion_length, 0])
     rotate([0,0,180])
-        bottom_blade_holder(height=total_height);
+        blade_clamp(height=total_height);
     
     
 
@@ -128,7 +128,8 @@ module upper_blade_holder(total_height, ){
 
 
 
-translate([0, -20, 0]) 
-    blade_clamp();
+translate([-30, 0, 0]) 
+    blade_clamp(height=blade_clamp_height);
 
+translate([30, 0, 0])
 upper_blade_holder(total_height = upper_blade_holder_total_height);

@@ -46,7 +46,8 @@ module build_body() {
     // define internal variables
     slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
     cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
-
+    wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
+    
     // build the base of the body
     union() {
         // main base body
@@ -132,14 +133,38 @@ module build_body() {
                             orient=RIGHT,
                         );
                 }
-                
-
+                // right wall
+                difference() {
+                    translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01, width, 0])
+                        cuboid(
+                            size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
+                            anchor=RIGHT+BOTTOM+BACK
+                        );
+                    // chamfer the edge
+                    translate([(scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01) - 0.5*(wall_length+0.01), width, 0])
+                        chamfer_edge_mask(
+                            l = wall_length+0.02, 
+                            chamfer=base_edge_chamfer + 0.01, 
+                            orient=RIGHT,
+                        );
+                }
             }
+
+            // cut the holes on the walls for the handle
+            translate([handle_axis_x_position, width/2, handle_axis_z_position])
+                union() {
+                    rotate([90,0,0])
+                        cylinder(d=handle_axis_diameter+handle_axis_hole_tolerance, h=handle_axis_length+handle_axis_length_tolerance, anchor=CENTER, $fa=0.5, $fs=0.1);
+                    
+                    cuboid(
+                        size=[handle_axis_diameter+handle_axis_hole_tolerance, handle_axis_length+handle_axis_length_tolerance, wall_height], 
+                        anchor=BOTTOM,
+                    );
+                }
+                
         }
 
     }
-
-
 }
 
 $fa = 1;
