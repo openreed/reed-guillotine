@@ -15,6 +15,8 @@ bottom_blade_seat_tolerance=1;
 handle_axis_hole_tolerance=0.1;
 // 手柄转轴长度公差 | Tolerance of the length of the handle axis, positive values will make the handle axis longer and negative values will make the handle axis shorter
 handle_axis_length_tolerance=0.2;
+// 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
+upper_blade_holder_slot_tolerance=0.2;
 
 
 /*[基座参数 | Base Parameters]*/
@@ -100,15 +102,30 @@ blade_clamp_height=2;
 
 
 /*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
-upper_blade_holder_total_height=8;
+// 顶部刀片夹具的基座高度 | Base height of the upper blade holder
+upper_blade_holder_base_height=5;
+// 顶部刀片夹具的滑块尺寸 | Slider size of the upper blade holder
+upper_blade_holder_slider_size=4;
+// 顶部刀片夹具的滑块长度 | Slider length of the upper blade holder
+upper_blade_holder_slider_length=10;
+// 顶部刀片夹具的两个滑块的中心间距 | Center distance between the two sliders of the upper blade holder
+upper_blade_holder_slider_spacing=25;
+// 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
+upper_blade_holder_slot_depth=20;
 
+
+/*[弹簧参数 | Spring Parameters]*/
+// 弹簧座直径 | Diameter of the spring seat for the upper blade holder
+spring_seat_diameter=2.5;
+// 弹簧座高度 | Height of the spring seat for the upper blade holder
+spring_seat_height=3;
 
 
 /*[墙参数 | Wall Parameters]*/
 // 墙长度 | Length of the walls
 wall_length=20;
 // 墙厚度 | Thickness of the walls
-wall_thickness=12;
+wall_thickness=15;
 
 
 /*[手柄参数 | Handle Parameters]*/

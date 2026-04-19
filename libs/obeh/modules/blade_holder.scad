@@ -117,12 +117,22 @@ module blade_clamp(height) {
 }
 
 
-module upper_blade_holder(total_height, ){
-    translate([0, blade_width-blade_protrusion_length, 0])
-    rotate([0,0,180])
-        blade_clamp(height=total_height);
+module upper_blade_holder(base_height, ){
+    translate([0, blade_width-blade_protrusion_length, base_height])
+    rotate([0,180,180])
+        blade_clamp(height=base_height);
     
-    
+    // two sliders on the upper blade holder
+    translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
+        cuboid(
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length, upper_blade_holder_slider_size],
+            anchor=BACK+BOTTOM
+        );
+    translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
+        cuboid(
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length, upper_blade_holder_slider_size],
+            anchor=BACK+BOTTOM
+         );
 
 }
 
@@ -132,4 +142,4 @@ translate([-30, 0, 0])
     blade_clamp(height=blade_clamp_height);
 
 translate([30, 0, 0])
-upper_blade_holder(total_height = upper_blade_holder_total_height);
+upper_blade_holder(base_height = upper_blade_holder_base_height);

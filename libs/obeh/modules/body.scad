@@ -47,7 +47,8 @@ module build_body() {
     slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
     cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
     wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
-    
+    wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance;
+
     // build the base of the body
     union() {
         // main base body
@@ -120,13 +121,13 @@ module build_body() {
             union() {
                 // left wall
                 difference() {
-                    translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01, 0, 0])
+                    translate([wall_right_x_position + 0.01, 0, 0])
                         cuboid(
                             size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
                             anchor=RIGHT+BOTTOM+FRONT
                         );
                     // chamfer the edge
-                    translate([(scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01) - 0.5*(wall_length+0.01), 0, 0])
+                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+0.01), 0, 0])
                         chamfer_edge_mask(
                             l = wall_length+0.02, 
                             chamfer=base_edge_chamfer + 0.01, 
@@ -135,13 +136,13 @@ module build_body() {
                 }
                 // right wall
                 difference() {
-                    translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01, width, 0])
+                    translate([wall_right_x_position + 0.01, width, 0])
                         cuboid(
                             size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
                             anchor=RIGHT+BOTTOM+BACK
                         );
                     // chamfer the edge
-                    translate([(scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance + 0.01) - 0.5*(wall_length+0.01), width, 0])
+                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+0.01), width, 0])
                         chamfer_edge_mask(
                             l = wall_length+0.02, 
                             chamfer=base_edge_chamfer + 0.01, 
@@ -160,6 +161,55 @@ module build_body() {
                         size=[handle_axis_diameter+handle_axis_hole_tolerance, handle_axis_length+handle_axis_length_tolerance, wall_height], 
                         anchor=BOTTOM,
                     );
+                }
+            
+            // cut the slot for the upper blade holder
+            //// left slot
+            translate([wall_right_x_position+0.02, width/2 - upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+                difference() {
+                    // slot
+                    cuboid(
+                        size=[
+                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
+                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
+                            upper_blade_holder_slot_depth+0.01
+                        ], 
+                        anchor=TOP+RIGHT
+                    );
+                    
+                    // spring seat
+                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                        cylinder(
+                            d=spring_seat_diameter, 
+                            h=spring_seat_height, 
+                            anchor=BOTTOM, 
+                            $fa=0.5, 
+                            $fs=0.1
+                        );
+                }
+                
+            //// right slot
+            translate([wall_right_x_position+0.02, width/2 + upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+                difference() {
+                    // slot
+                    cuboid(
+                        size=[
+                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
+                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
+                            upper_blade_holder_slot_depth+0.01
+                        ], 
+                        anchor=TOP+RIGHT
+                    );
+                    
+                    // spring seat
+                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                        cylinder(
+                            d=spring_seat_diameter, 
+                            h=spring_seat_height, 
+                            anchor=BOTTOM, 
+                            $fa=0.5, 
+                            $fs=0.1
+                        );
                 }
                 
         }
