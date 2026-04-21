@@ -10,7 +10,7 @@ back_clamp_thickness_tolerance=0.5;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
 back_clamp_width_tolerance=0.2;
 // 底部刀片座相对于刀片+夹片的厚度所增加的长度 | Length of the bottom blade clamp, which is the part of the blade that protrudes from the blade holder and can cut the reed
-bottom_blade_seat_tolerance=1;
+bottom_blade_seat_tolerance=2;
 // 手柄转轴孔公差 | Tolerance of the hole for the handle axis
 handle_axis_hole_tolerance=0.1;
 // 手柄转轴长度公差 | Tolerance of the length of the handle axis, positive values will make the handle axis longer and negative values will make the handle axis shorter
@@ -96,7 +96,7 @@ back_clamp_width=7;
 // 刀片突出部分的长度 | Length of the blade protrusion, which is the part of the blade that protrudes from the blade holder and can cut the reed
 blade_protrusion_length=2;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
-side_notch_height=1.5;
+side_notch_height=2;
 // 刀片夹片的高度 | Height of the blade clamp
 blade_clamp_height=2;
 
@@ -138,3 +138,9 @@ handle_axis_diameter=10;
 // 手柄转轴长度 | Length of the handle axis
 handle_axis_length=35;
 
+
+/*[内部参数 | Internal Parameters]*/
+slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
+cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
+wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
+wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance;

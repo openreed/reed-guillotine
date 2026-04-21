@@ -43,11 +43,6 @@ module build_body() {
     This module models the base of the guillotine for oboe and English horn.
     */
 
-    // define internal variables
-    slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
-    cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
-    wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
-    wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance;
 
     // build the base of the body
     union() {
@@ -82,9 +77,9 @@ module build_body() {
                 }
             
             // bottom hole
-            translate([scale_zero_x_position + blade_thickness/2 + cutting_block_length/2, width/2, -0.01])
+            translate([length-slot_length+0.01, width/2, -0.01])
                 cube(
-                    size=[bottom_hole_length + cutting_block_length/2, blade_length+0.01, base_height+0.02], 
+                    size=[bottom_hole_length+0.01, blade_length+0.01, base_height+0.02], 
                     anchor=RIGHT+BOTTOM
                 );
 
@@ -210,9 +205,21 @@ module build_body() {
                             $fa=0.5, 
                             $fs=0.1
                         );
-                }
-                
+                }       
         }
+
+
+        // bottom blade holder skirt
+        translate([wall_right_x_position, 0, base_height/2])
+            cuboid(
+                size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                anchor=FRONT+LEFT+BOTTOM
+            );
+        translate([wall_right_x_position, width, base_height/2])
+            cuboid(
+                size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                anchor=BACK+LEFT+BOTTOM
+            );
 
     }
 }
