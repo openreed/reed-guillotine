@@ -1,6 +1,7 @@
 // This file models the main body of the guillotine for oboe and English horn.
 
 include <BOSL2/std.scad>
+include <BOSL2/screws.scad>
 
 include <../params.scad>
 use <../../utils/utils.scad>
@@ -105,10 +106,21 @@ module build_body() {
         rotate([90,0,-90])
             bottom_blade_holder(height=cutting_block_length);
         translate([length-slot_length+0.01, width/2, 0])
-            cuboid(
-                size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance, blade_length+0.01, scale_zero_z_position-blade_width],
-                anchor=BOTTOM+RIGHT
-            );
+            // bottom blade seat
+            difference() {
+                cuboid(
+                    size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_length+0.01, scale_zero_z_position-blade_width],
+                    anchor=BOTTOM+RIGHT
+                );
+                // cut the bottom hole for clearing the cutted cane
+                translate([-(cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance), 0, -0.01])
+                cuboid(
+                    size=[bottom_hole_length+0.01, width-2*wall_thickness, scale_zero_z_position-blade_width+0.02], 
+                    anchor=RIGHT+BOTTOM
+                );
+            
+            }
+            
         
         // walls, which hold the upper blade holder and the handle
         difference() {
@@ -205,7 +217,26 @@ module build_body() {
                             $fa=0.5, 
                             $fs=0.1
                         );
-                }       
+                }
+            
+            // screw holes
+            for(i = [0:len(wall_screw_x_positions)-1]){
+            translate([wall_screw_x_positions[i], wall_screw_center_side_distance, wall_height+base_height])
+                screw_hole(
+                    wall_screw_type, 
+                    anchor=TOP, 
+                    thread=true,
+                    tolerance="8G"
+                );
+            translate([wall_screw_x_positions[i], width - wall_screw_center_side_distance, wall_height+base_height])
+                screw_hole(
+                    wall_screw_type, 
+                    anchor=TOP, 
+                    thread=true,
+                    tolerance="8G"
+                );
+            }
+
         }
 
 
