@@ -129,13 +129,19 @@ wall_thickness=15;
 // 墙与夹具之间的距离 | Distance between the walls and the blade holder
 wall_holder_distance=2;
 // 墙上螺丝孔中心到墙边的距离 | Distance between the center of the screw holes on the walls and the side of the walls
-wall_screw_center_side_distance=4;
-// 墙上两组螺丝孔的x坐标，list | x positions of the two sets of screw holes on the walls, in a list
-wall_screw_x_positions=[17,28];
+wall_screw_center_side_distance=5;
+// 墙上多组螺丝孔的x坐标，list | x positions of the sets of screw holes on the walls, in a list
+wall_screw_x_positions=[28];
 // 墙上螺丝孔的类型 "型号，深度" | Type of the screw holes on the walls, in the format of "type, depth"
 wall_screw_type="M5,10";
-
-
+// 墙上公凸中心到后墙的距离 | Distance between the center of the wall tongue and the back wall
+wall_tongue_center_back_distance=4;
+// 墙上公凸的高度 | Height of the wall tongue
+wall_tongue_height=3;
+// 墙上公凸的直径 | Diameter of the wall tongue
+wall_tongue_diameter=5;
+// 墙前档板的厚度 | Thickness of the wall front skirt
+wall_skirt_thickness=3;
 
 
 /*[手柄参数 | Handle Parameters]*/
@@ -149,8 +155,24 @@ handle_axis_diameter=10;
 handle_axis_length=30;
 
 
+/*[顶盖参数 | Lid Parameters]*/
+// 顶盖高度，应大于wall_tongue_height | Height of the lid, should be greater than wall_tongue_height
+lid_height=5;
+// 顶盖上螺丝顶孔深度 | Depth of the screw slots on the lid
+lid_screw_slot_head_depth=3;
+// 顶盖上螺丝顶孔直径 | Diameter of the screw slots on the lid
+lid_screw_slot_head_diameter=7;
+// 顶盖上螺丝孔的直径 | Diameter of the screw slots on the lid
+lid_screw_slot_diameter=5.2;
+// 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid
+lid_groove_diameter_tolerance=0.2;
+// 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
+lid_groove_height_tolerance=0.5;
+
+
 /*[内部参数 | Internal Parameters]*/
 slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
 cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
 wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance-wall_holder_distance;
+wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position);

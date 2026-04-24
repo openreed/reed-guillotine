@@ -49,14 +49,38 @@ module build_body() {
     union() {
         // main base body
         difference() {
-            // base cuboid
-            make_chamfered_cube_with_round_corners(
-                length = length, 
-                width = width, 
-                height = base_height, 
-                corner_fillet = base_corner_fillet, 
-                edge_chamfer = base_edge_chamfer
-            );
+            union() {
+                // base cuboid
+                make_chamfered_cube_with_round_corners(
+                    length = length, 
+                    width = width, 
+                    height = base_height, 
+                    corner_fillet = base_corner_fillet, 
+                    edge_chamfer = base_edge_chamfer
+                );
+                // blade holder front skirt
+                translate([wall_right_x_position, 0, base_height/2])
+                    cuboid(
+                        size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                        anchor=FRONT+LEFT+BOTTOM
+                    );
+                translate([wall_right_x_position, width, base_height/2])
+                    cuboid(
+                        size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                        anchor=BACK+LEFT+BOTTOM
+                    );
+                translate([length-slot_length, 0, base_height/2])
+                    cuboid(
+                        size=[wall_skirt_thickness, (width-slot_top_width)/2 - slot_top_corner_fillet_length, wall_height+base_height/2], 
+                        anchor=FRONT+LEFT+BOTTOM
+                    );
+                translate([length-slot_length, width, base_height/2])
+                    cuboid(
+                        size=[wall_skirt_thickness, (width-slot_top_width)/2 - slot_top_corner_fillet_length, wall_height+base_height/2], 
+                        anchor=BACK+LEFT+BOTTOM
+                    );
+
+            }
 
             // slot for the reed holder
             translate([length+0.01, width/2, base_height+0.01])
@@ -156,6 +180,23 @@ module build_body() {
                             orient=RIGHT,
                         );
                 }
+                // wall tongues to connect the lid
+                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, wall_screw_center_side_distance, wall_height+base_height-0.01])
+                    cylinder(
+                        d=wall_tongue_diameter, 
+                        h=wall_tongue_height+0.01, 
+                        anchor=BOTTOM, 
+                        $fa=0.5, 
+                        $fs=0.1
+                    );
+                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, width - wall_screw_center_side_distance, wall_height+base_height-0.01])
+                    cylinder(
+                        d=wall_tongue_diameter, 
+                        h=wall_tongue_height+0.01, 
+                        anchor=BOTTOM, 
+                        $fa=0.5, 
+                        $fs=0.1
+                    );
             }
 
             // cut the holes on the walls for the handle
@@ -236,22 +277,10 @@ module build_body() {
                     tolerance="8G"
                 );
             }
-
         }
 
 
-        // bottom blade holder skirt
-        translate([wall_right_x_position, 0, base_height/2])
-            cuboid(
-                size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
-                anchor=FRONT+LEFT+BOTTOM
-            );
-        translate([wall_right_x_position, width, base_height/2])
-            cuboid(
-                size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
-                anchor=BACK+LEFT+BOTTOM
-            );
-
+        
     }
 }
 

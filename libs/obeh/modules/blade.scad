@@ -1,3 +1,6 @@
+// This file models the blade of the guillotine for oboe and English horn.
+// No need to print.
+
 include <BOSL2/std.scad>
 
 include <../params.scad>

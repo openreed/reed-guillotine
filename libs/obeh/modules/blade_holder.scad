@@ -1,3 +1,5 @@
+// This file models the top and bottom blade holder of the guillotine.
+
 include <BOSL2/std.scad>
 
 include <../params.scad>
