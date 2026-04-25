@@ -153,6 +153,8 @@ handle_axis_z_position=29;
 handle_axis_diameter=10;
 // 手柄转轴长度 | Length of the handle axis
 handle_axis_length=30;
+// 手柄转轴倒角 | Chamfer of the handle axis
+handle_axis_chamfer=1;
 
 
 /*[顶盖参数 | Lid Parameters]*/
