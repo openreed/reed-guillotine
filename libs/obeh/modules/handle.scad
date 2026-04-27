@@ -37,7 +37,49 @@ module handle() {
     difference() {
         union() {
             // grip
+            translate([0, handle_axis_to_top_distance, 0])
+                cuboid(
+                    size=[handle_axis_to_end_distance, handle_thickness, handle_width], 
+                    anchor=BACK+LEFT+BOTTOM,
+                    chamfer=handle_chamfer,
+                    edges="X",
+                );
+            
+            union() {
+                translate([0, handle_axis_to_top_distance, 0])
+                    cuboid(
+                        size=[
+                            handle_axis_diameter + handle_hole_tolerance + handle_hole_wall_thickness*2, 
+                            handle_axis_to_top_distance, 
+                            handle_width
+                        ], 
+                        anchor=BACK+BOTTOM,
+                        chamfer=handle_chamfer,
+                        edges=["Y",BACK],
+                    );
+                translate([0,0,0])
+                    cyl(
+                        d=handle_axis_diameter + handle_hole_tolerance + handle_hole_wall_thickness*2, 
+                        h=handle_width, 
+                        anchor=BOTTOM, 
+                        $fa=0.5, 
+                        $fs=0.1,
+                        chamfer=handle_chamfer,
+                    );
+            }
+                
         }
+
+        // hole for the axle
+        translate([0,0,-0.01])
+            cyl(
+                d=handle_axis_diameter + handle_hole_tolerance, 
+                h=handle_width+0.02, 
+                anchor=BOTTOM, 
+                $fa=0.5, 
+                $fs=0.1,
+                chamfer=-0.5,
+            );
         
     }
 
@@ -48,5 +90,5 @@ module handle() {
 translate([-30,0,0])
 axle();
 
-translate([30,0,0])
+translate([0,0,0])
 handle();

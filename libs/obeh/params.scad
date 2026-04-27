@@ -155,6 +155,23 @@ handle_axis_diameter=10;
 handle_axis_length=30;
 // 手柄转轴倒角 | Chamfer of the handle axis
 handle_axis_chamfer=1;
+// 手柄轴心到末端的水平距离 | The horizontal distance from the center of the handle axis to the end of the handle
+handle_axis_to_end_distance=60;
+// 手柄轴心到顶部边缘的垂直距离 | The vertical distance from the center of the handle axis to the top edge of the handle
+handle_axis_to_top_distance=12;
+// 手柄厚度 | Thickness of the handle
+handle_thickness=8;
+// 手柄倒角 | Chamfer of the handle
+handle_chamfer=0.8;
+// 手柄孔的墙厚 | Wall thickness of the handle hole
+handle_hole_wall_thickness=2;
+
+
+// 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
+handle_wall_tolerance=0.5;
+// 手柄孔公差 | Tolerance of the hole for the handle axis
+handle_hole_tolerance=0.2;
+
 
 
 /*[顶盖参数 | Lid Parameters]*/
@@ -178,3 +195,5 @@ cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_p
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
 wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance-wall_holder_distance;
 wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position);
+// 手柄宽度 | Width of the handle
+handle_width=width-2*wall_thickness-handle_wall_tolerance;
