@@ -17,7 +17,12 @@ handle_axis_hole_tolerance=0.1;
 handle_axis_length_tolerance=0.2;
 // 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
 upper_blade_holder_slot_tolerance=0.2;
-
+// 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
+handle_wall_tolerance=0.5;
+// 手柄孔公差 | Tolerance of the hole for the handle axis
+handle_hole_tolerance=0.2;
+// 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
+reed_holder_width_tolerance=0.2;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -167,13 +172,6 @@ handle_chamfer=0.8;
 handle_hole_wall_thickness=2;
 
 
-// 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
-handle_wall_tolerance=0.5;
-// 手柄孔公差 | Tolerance of the hole for the handle axis
-handle_hole_tolerance=0.2;
-
-
-
 /*[顶盖参数 | Lid Parameters]*/
 // 顶盖高度，应大于wall_tongue_height | Height of the lid, should be greater than wall_tongue_height
 lid_height=5;
@@ -189,6 +187,12 @@ lid_groove_diameter_tolerance=0.2;
 lid_groove_height_tolerance=0.5;
 
 
+/*[哨片座参数 | Reed Holder Parameters]*/
+// 哨片座长度 | Length of the reed holder
+reed_holder_length=40;
+
+
+
 /*[内部参数 | Internal Parameters]*/
 slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
 cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
@@ -197,3 +201,5 @@ wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_
 wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position);
 // 手柄宽度 | Width of the handle
 handle_width=width-2*wall_thickness-handle_wall_tolerance;
+// 哨片座宽度 | Width of the reed holder
+reed_holder_width=slot_top_width-reed_holder_width_tolerance;

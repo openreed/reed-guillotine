@@ -42,7 +42,6 @@ module handle() {
                     size=[handle_axis_to_end_distance, handle_thickness, handle_width], 
                     anchor=BACK+LEFT+BOTTOM,
                     chamfer=handle_chamfer,
-                    edges="X",
                 );
             
             union() {
