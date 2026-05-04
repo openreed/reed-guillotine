@@ -30,8 +30,20 @@ module reed_holder() {
                 rounding=reed_holder_fillet,
                 $fa=0.5,
                 $fs=0.1,
-
             );
+
+            translate([staple_slot_length, 0, slot_height])
+                cuboid(
+                    size=[
+                        reed_holder_length - staple_slot_length,
+                        reed_holder_width, 
+                        reed_holder_height - slot_height
+                    ],
+                    anchor=LEFT+BOTTOM,
+                    rounding=reed_holder_fillet,
+                    $fa=0.5,
+                    $fs=0.1,
+                );
         }
 
         // rounding
@@ -65,6 +77,17 @@ module reed_holder() {
                 orient=LEFT, 
                 rounding2=-reed_holder_fillet,
                 $fa=0.5, $fs=0.1
+            );
+
+        // screw
+        translate([reed_holder_screw_x_position,0,reed_holder_height])
+            screw_hole(
+                format("{},{:.2f}", [reed_holder_screw_type, reed_holder_height+0.01]),
+                anchor=TOP, 
+                thread=true,
+                tolerance="8G",
+                $fa=0.5,
+                $fs=0.1
             );
         
 

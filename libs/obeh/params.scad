@@ -190,12 +190,18 @@ lid_groove_height_tolerance=0.5;
 /*[哨片座参数 | Reed Holder Parameters]*/
 // 哨片座长度 | Length of the reed holder
 reed_holder_length=40;
+// 哨片座高度 | Height of the reed holder
+reed_holder_height=15;
 // 哨片座圆角 | Fillet radius of the reed holder
 reed_holder_fillet=0.5;
 // 哨座槽长度 | Length of the staple slot on the reed holder
 staple_slot_length=23;
 // 哨座槽半径 | Diameter of the staple slot
 staple_slot_diameter=5.8;
+// 哨片座螺孔类型 "型号" | Type of the screw holes on the reed holder, in the format of "type"
+reed_holder_screw_type="M10";
+// 哨片座螺孔x坐标 | x position of the screw holes on the reed holder
+reed_holder_screw_x_position=30;
 
 
 
