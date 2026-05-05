@@ -46,7 +46,7 @@ module reed_holder() {
                 );
         }
 
-        // rounding
+        // fillet
         translate([reed_holder_length/2, -(reed_holder_width/2 + slot_height/tan(slot_bottom_angle)), 0])
         rotate([90,0,0])
             rounding_edge_mask(
@@ -67,7 +67,30 @@ module reed_holder() {
                 $fa=0.5,
                 $fs=0.1,
             );
+        translate([0, staple_slot_diameter/2, scale_zero_z_position-base_height])
+        rotate([-10,0,0])
+            rounding_edge_mask(
+                l=staple_slot_length,
+                r=reed_holder_fillet,
+                ang=100,
+                anchor=BOTTOM,
+                orient=RIGHT,
+                $fa=0.5,
+                $fs=0.1,
+            );
+        translate([0, -staple_slot_diameter/2, scale_zero_z_position-base_height])
+        rotate([-90,0,0])
+            rounding_edge_mask(
+                l=staple_slot_length,
+                r=reed_holder_fillet,
+                ang=100,
+                anchor=BOTTOM,
+                orient=RIGHT,
+                $fa=0.5,
+                $fs=0.1,
+            );
         
+
         // staple slot
         translate([staple_slot_length, 0, scale_zero_z_position-base_height])
             cyl(
@@ -89,6 +112,65 @@ module reed_holder() {
                 $fa=0.5,
                 $fs=0.1
             );
+        
+        // mandrel slot
+        difference() {
+            union() {
+                translate([reed_holder_length+0.01, 0, reed_holder_height+0.01])
+                    cuboid(
+                        size=[mandrel_slot_depth+0.01, mandrel_slot_diameter, reed_holder_height-scale_zero_z_position+base_height+0.01],
+                        anchor=TOP+RIGHT,
+                        rounding=-reed_holder_fillet,
+                        edges=[TOP],
+                        $fa=0.5,
+                        $fs=0.1,
+                    );
+                translate([reed_holder_length+0.01, 0, scale_zero_z_position-base_height]) 
+                    cyl(
+                        h=mandrel_slot_depth+0.01,
+                        d=mandrel_slot_diameter,
+                        orient=LEFT,
+                        anchor=BOTTOM,
+                        rounding1=-reed_holder_fillet,
+                        $fa=0.5,
+                        $fs=0.1,
+                    );
+                // edge fillet
+                translate([reed_holder_length+0.01, -mandrel_slot_diameter/2, scale_zero_z_position-base_height]) 
+                rotate([0,0,180])
+                    rounding_edge_mask(
+                        l=reed_holder_height+0.01,
+                        r=reed_holder_fillet,
+                        ang=90,
+                        orient=UP,
+                        anchor=BOTTOM,
+                        $fa=0.5,
+                        $fs=0.1,
+                    );
+                translate([reed_holder_length+0.01, mandrel_slot_diameter/2, scale_zero_z_position-base_height])
+                rotate([0,0,90])
+                    rounding_edge_mask(
+                        l=reed_holder_height+0.01,
+                        r=reed_holder_fillet,
+                        ang=90,
+                        orient=UP,
+                        anchor=BOTTOM,
+                        $fa=0.5,
+                        $fs=0.1,
+                    );
+            }
+            translate([reed_holder_length-mandrel_slot_depth, 0, scale_zero_z_position-base_height])
+                cyl(
+                    h=mandrel_slot_depth+0.01,
+                    d=mandrel_diameter,
+                    orient=RIGHT,
+                    anchor=BOTTOM,
+                    rounding2=reed_holder_fillet,
+                    $fa=0.5,
+                    $fs=0.1,
+
+                );
+        }
         
 
 

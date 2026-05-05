@@ -202,6 +202,12 @@ staple_slot_diameter=5.8;
 reed_holder_screw_type="M10";
 // 哨片座螺孔x坐标 | x position of the screw holes on the reed holder
 reed_holder_screw_x_position=30;
+// 哨片锥槽深度 | Depth of the mandrel slot
+mandrel_slot_depth=3.5;
+// 哨片锥槽直径 | Diameter of the mandrel slot
+mandrel_slot_diameter=7.1;
+// 哨片锥直径 | Diameter of the mandrel
+mandrel_diameter=4.6;
 
 
 
