@@ -168,15 +168,31 @@ module reed_holder() {
                     rounding2=reed_holder_fillet,
                     $fa=0.5,
                     $fs=0.1,
-
                 );
         }
-        
-
-
     }
-    
 }
 
 
+module tightening_screw() {
+    spec = screw_info(
+        format("{},{:.2f}", [reed_holder_screw_type, reed_holder_height+0.01]), 
+        head="socket"
+    );
+    newspec = struct_set(
+        spec,
+        [
+            "head_size",tightening_screw_head_diameter,
+            "head_height",tightening_screw_head_height
+        ]
+    );
+    screw(newspec, anchor=TOP, orient=DOWN, $fa=0.5, $fs=0.1);
+}
+
+
+
+
 reed_holder();
+
+translate([-20,0,0])
+    tightening_screw();

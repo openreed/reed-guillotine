@@ -208,6 +208,10 @@ mandrel_slot_depth=3.5;
 mandrel_slot_diameter=7.1;
 // 哨片锥直径 | Diameter of the mandrel
 mandrel_diameter=4.6;
+// 固定螺丝头部宽度 | Diameter of the head of the tightening screw
+tightening_screw_head_diameter=15;
+// 固定螺丝头部高度 | Height of the head of the tightening screw
+tightening_screw_head_height=10;
 
 
 
