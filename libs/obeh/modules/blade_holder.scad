@@ -143,10 +143,10 @@ module upper_blade_holder(base_height, ){
 }
 
 
-translate([-30,-20,0]) 
-    bottom_blade_holder(height=cutting_block_length);
-
 translate([-30, 0, 0]) 
+    blade_clamp(height=blade_clamp_height);
+
+translate([-30,-20,0]) 
     blade_clamp(height=blade_clamp_height);
 
 translate([30, 0, 0])

@@ -3,12 +3,14 @@
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使刻度远离零刻线，负值会使刻度靠近零刻线 | Tolerance of the scale, positive values will make the scale bars come farther from the zero point, while negative values will make the scale bars come closer to the zero point
 scale_tolerance=0.3;
+// 刀片长度公差 | Tolerance of the length of the blade
+blade_length_tolerance=0.4;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
 side_notch_tolerance=0.1;
 // 刀片夹背的厚度公差 | Thickness tolerance of the back clamp for the blade, positive values will make the back clamp thicker and negative values will make the back clamp thinner
 back_clamp_thickness_tolerance=0.5;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
-back_clamp_width_tolerance=0.2;
+back_clamp_width_tolerance=0.3;
 // 底部刀片座相对于刀片+夹片的厚度所增加的长度 | Length of the bottom blade clamp, which is the part of the blade that protrudes from the blade holder and can cut the reed
 bottom_blade_seat_tolerance=0.1;
 // 手柄转轴孔公差 | Tolerance of the hole for the handle axis
@@ -92,7 +94,7 @@ side_notch_length=3.5;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
 side_notch_edge_distance=9.6;
 // 刀片背部夹具的厚度 | Thickness of the back clamp for the blade
-back_clamp_thickness=0.2;
+back_clamp_thickness=0.1;
 // 刀片背部夹具的宽度 | Width of the back clamp for the blade
 back_clamp_width=7;
 
@@ -108,7 +110,7 @@ blade_clamp_height=2;
 
 /*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
 // 顶部刀片夹具的基座高度 | Base height of the upper blade holder
-upper_blade_holder_base_height=5;
+upper_blade_holder_base_height=2;
 // 顶部刀片夹具的滑块尺寸 | Slider size of the upper blade holder
 upper_blade_holder_slider_size=4;
 // 顶部刀片夹具的滑块长度 | Slider length of the upper blade holder
@@ -132,7 +134,7 @@ wall_length=20;
 // 墙厚度 | Thickness of the walls
 wall_thickness=15;
 // 墙与夹具之间的距离 | Distance between the walls and the blade holder
-wall_holder_distance=2;
+wall_holder_distance=3;
 // 墙上螺丝孔中心到墙边的距离 | Distance between the center of the screw holes on the walls and the side of the walls
 wall_screw_center_side_distance=5;
 // 墙上多组螺丝孔的x坐标，list | x positions of the sets of screw holes on the walls, in a list
@@ -225,3 +227,5 @@ wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wal
 handle_width=width-2*wall_thickness-handle_wall_tolerance;
 // 哨片座宽度 | Width of the reed holder
 reed_holder_width=slot_top_width-reed_holder_width_tolerance;
+// 刀片槽长度 | Length of the blade slot
+blade_slot_length=blade_length+blade_length_tolerance;

@@ -61,12 +61,12 @@ module build_body() {
                 // blade holder front skirt
                 translate([wall_right_x_position, 0, base_height/2])
                     cuboid(
-                        size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                        size=[length-slot_length - wall_right_x_position, (width-blade_slot_length)/2, wall_height+base_height/2], 
                         anchor=FRONT+LEFT+BOTTOM
                     );
                 translate([wall_right_x_position, width, base_height/2])
                     cuboid(
-                        size=[length-slot_length - wall_right_x_position, (width-blade_length)/2, wall_height+base_height/2], 
+                        size=[length-slot_length - wall_right_x_position, (width-blade_slot_length)/2, wall_height+base_height/2], 
                         anchor=BACK+LEFT+BOTTOM
                     );
                 translate([length-slot_length, 0, base_height/2])
@@ -104,7 +104,7 @@ module build_body() {
             // bottom hole
             translate([length-slot_length+0.01, width/2, -0.01])
                 cube(
-                    size=[bottom_hole_length+0.01, blade_length+0.01, base_height+0.02], 
+                    size=[bottom_hole_length+0.01, blade_slot_length+0.01, base_height+0.02], 
                     anchor=RIGHT+BOTTOM
                 );
 
@@ -133,7 +133,7 @@ module build_body() {
             // bottom blade seat
             difference() {
                 cuboid(
-                    size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_length+0.01, scale_zero_z_position-blade_width],
+                    size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_slot_length+0.01, scale_zero_z_position-blade_width],
                     anchor=BOTTOM+RIGHT
                 );
                 // cut the bottom hole for clearing the cutted cane
