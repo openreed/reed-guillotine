@@ -4,7 +4,7 @@
 // 刻度的公差，正值会使刻度远离零刻线，负值会使刻度靠近零刻线 | Tolerance of the scale, positive values will make the scale bars come farther from the zero point, while negative values will make the scale bars come closer to the zero point
 scale_tolerance=0.3;
 // 刀片长度公差 | Tolerance of the length of the blade
-blade_length_tolerance=0.4;
+blade_length_tolerance=0.8;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
 side_notch_tolerance=0.1;
 // 刀片夹背的厚度公差 | Thickness tolerance of the back clamp for the blade, positive values will make the back clamp thicker and negative values will make the back clamp thinner
@@ -88,7 +88,7 @@ hole_diameter=2;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
-side_notch_width=2.5;
+side_notch_width=2.6;
 // 刀片侧面缺口的长度 | Length of the side notch on the blade
 side_notch_length=3.5;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
@@ -109,23 +109,23 @@ blade_clamp_height=2;
 
 
 /*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
-// 顶部刀片夹具的基座高度 | Base height of the upper blade holder
-upper_blade_holder_base_height=2;
+
 // 顶部刀片夹具的滑块尺寸 | Slider size of the upper blade holder
-upper_blade_holder_slider_size=4;
+upper_blade_holder_slider_size=4.7;
 // 顶部刀片夹具的滑块长度 | Slider length of the upper blade holder
 upper_blade_holder_slider_length=10;
 // 顶部刀片夹具的两个滑块的中心间距 | Center distance between the two sliders of the upper blade holder
-upper_blade_holder_slider_spacing=25;
+upper_blade_holder_slider_spacing=24;
 // 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
-upper_blade_holder_slot_depth=20;
+upper_blade_holder_slot_depth=16;
+
 
 
 /*[弹簧参数 | Spring Parameters]*/
 // 弹簧座直径 | Diameter of the spring seat for the upper blade holder
-spring_seat_diameter=2.5;
+spring_seat_diameter=3.5;
 // 弹簧座高度 | Height of the spring seat for the upper blade holder
-spring_seat_height=3;
+spring_seat_height=3.5;
 
 
 /*[墙参数 | Wall Parameters]*/
@@ -153,7 +153,7 @@ wall_skirt_thickness=3;
 
 /*[手柄参数 | Handle Parameters]*/
 // 手柄转轴中心x坐标 | x position of the center of the handle axis
-handle_axis_x_position=21;
+handle_axis_x_position=20;
 // 手柄转轴中心z坐标 | z position of the center of the handle axis
 handle_axis_z_position=29;
 // 手柄转轴直径 | Diameter of the handle axis
@@ -229,3 +229,8 @@ handle_width=width-2*wall_thickness-handle_wall_tolerance;
 reed_holder_width=slot_top_width-reed_holder_width_tolerance;
 // 刀片槽长度 | Length of the blade slot
 blade_slot_length=blade_length+blade_length_tolerance;
+
+// 顶部刀片夹具的基座高度 | Base height of the upper blade holder
+upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position;
+// 顶部刀片夹片的高度 | Height of the upper blade clamp
+upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height;

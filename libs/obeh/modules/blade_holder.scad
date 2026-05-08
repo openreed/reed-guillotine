@@ -39,7 +39,7 @@ module bottom_blade_holder(height) {
     difference() {
         // body
         cuboid(
-            size=[blade_length, blade_width-blade_protrusion_length, height], 
+            size=[blade_slot_length, blade_width-blade_protrusion_length, height], 
             anchor=BOTTOM+FRONT,
         );
 
@@ -50,30 +50,30 @@ module bottom_blade_holder(height) {
         // blade back clamp
         translate([0, -0.01, height-back_clamp_thickness-back_clamp_thickness_tolerance])
             cuboid(
-                size=[blade_length+0.01, back_clamp_width+back_clamp_width_tolerance+0.01, back_clamp_thickness+back_clamp_thickness_tolerance+0.01], 
+                size=[blade_slot_length+0.01, back_clamp_width+back_clamp_width_tolerance+0.01, back_clamp_thickness+back_clamp_thickness_tolerance+0.01], 
                 anchor=FRONT+BOTTOM
             );
         back_clamp_chamfer = (back_clamp_thickness+back_clamp_thickness_tolerance) * sqrt(2);
         translate([0, back_clamp_width+back_clamp_width_tolerance, height-back_clamp_thickness-back_clamp_thickness_tolerance])
         rotate([45,0,0])
             cuboid(
-                size=[blade_length+0.01, back_clamp_chamfer+0.01, back_clamp_chamfer+0.01], 
+                size=[blade_slot_length+0.01, back_clamp_chamfer+0.01, back_clamp_chamfer+0.01], 
                 anchor=FRONT+BOTTOM
             );
         
         // side notches
-        translate([-blade_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
+        translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
         side_notch_clamp(
-            width=side_notch_width - side_notch_tolerance, 
-            length=side_notch_length - side_notch_tolerance + 0.01, 
+            width=side_notch_width, 
+            length=side_notch_length + 0.01, 
             height=height+0.02
         );
     
-        translate([blade_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
+        translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
         rotate([0,0,180])
             side_notch_clamp(
-                width=side_notch_width - side_notch_tolerance, 
-                length=side_notch_length - side_notch_tolerance + 0.01, 
+                width=side_notch_width, 
+                length=side_notch_length + 0.01, 
                 height=height+0.02
             );
     }
@@ -87,7 +87,7 @@ module blade_clamp(height) {
     difference() {
         // basic cuboid
         cuboid(
-            size=[blade_length, blade_width-blade_protrusion_length, height], 
+            size=[blade_slot_length, blade_width-blade_protrusion_length, height], 
             anchor=BOTTOM+FRONT,
         );
 
@@ -99,21 +99,21 @@ module blade_clamp(height) {
         // blade back clamp
         translate([0, -0.01, height-back_clamp_thickness-back_clamp_thickness_tolerance])
             cuboid(
-                size=[blade_length+0.01, back_clamp_width+back_clamp_width_tolerance+0.01, back_clamp_thickness+back_clamp_thickness_tolerance+0.01], 
+                size=[blade_slot_length+0.01, back_clamp_width+back_clamp_width_tolerance+0.01, back_clamp_thickness+back_clamp_thickness_tolerance+0.01], 
                 anchor=FRONT+BOTTOM
             );
         
     }
 
     // side notches
-    translate([-blade_length/2 - 0.01, blade_width-side_notch_edge_distance, height-0.01])
+    translate([-blade_slot_length/2 - 0.01, blade_width-side_notch_edge_distance, height-0.01])
         side_notch_clamp(
             width=side_notch_width - side_notch_tolerance, 
             length=side_notch_length - side_notch_tolerance, 
             height=side_notch_height+0.02
         );
         
-    translate([blade_length/2 + 0.01, blade_width-side_notch_edge_distance, height-0.01])
+    translate([blade_slot_length/2 + 0.01, blade_width-side_notch_edge_distance, height-0.01])
     rotate([0,0,180])
         side_notch_clamp(
             width=side_notch_width + side_notch_tolerance, 
@@ -143,10 +143,11 @@ module upper_blade_holder(base_height){
 
 }
 
-
+// upper blade holder clamp
 translate([-30, 0, 0]) 
-    blade_clamp(height=blade_clamp_height);
+    blade_clamp(height=upper_blade_clamp_height);
 
+// bottom blade holder clamp
 translate([-30,-20,0]) 
     blade_clamp(height=blade_clamp_height);
 
