@@ -123,8 +123,9 @@ module blade_clamp(height) {
 }
 
 
-module upper_blade_holder(base_height, ){
-    translate([0, blade_width-blade_protrusion_length, base_height])
+module upper_blade_holder(base_height){
+    rotate([-90,0,0]) translate([0, -(blade_width-blade_protrusion_length), 0])
+    {translate([0, blade_width-blade_protrusion_length, base_height])
     rotate([0,180,180])
         bottom_blade_holder(height=base_height);
     
@@ -138,7 +139,7 @@ module upper_blade_holder(base_height, ){
         cuboid(
             size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length, upper_blade_holder_slider_size],
             anchor=BACK+BOTTOM
-         );
+         );}
 
 }
 
