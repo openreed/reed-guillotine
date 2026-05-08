@@ -181,7 +181,7 @@ module build_body() {
                         );
                 }
                 // wall tongues to connect the lid
-                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, wall_screw_center_side_distance, wall_height+base_height-0.01])
+                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, wall_tongue_center_back_distance, wall_height+base_height-0.01])
                     cylinder(
                         d=wall_tongue_diameter, 
                         h=wall_tongue_height+0.01, 
@@ -189,7 +189,7 @@ module build_body() {
                         $fa=0.5, 
                         $fs=0.1
                     );
-                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, width - wall_screw_center_side_distance, wall_height+base_height-0.01])
+                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, width - wall_tongue_center_back_distance, wall_height+base_height-0.01])
                     cylinder(
                         d=wall_tongue_diameter, 
                         h=wall_tongue_height+0.01, 

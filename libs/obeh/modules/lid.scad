@@ -29,14 +29,6 @@ module lid() {
                     chamfer=1,
                     edges=TOP,
                 );
-            // back body
-            translate([length-slot_length+wall_skirt_thickness - wall_total_length, width/2, 0])
-                cuboid(
-                    size=[(handle_axis_x_position-(handle_axis_diameter+handle_axis_hole_tolerance)/2)-(wall_right_x_position-wall_length), width, lid_height], 
-                    anchor=BOTTOM+LEFT,
-                    chamfer=1,
-                    edges=TOP,
-                );
         }
 
         // screw holes
