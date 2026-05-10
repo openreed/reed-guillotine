@@ -6,9 +6,9 @@ scale_tolerance=0.3;
 // 刀片长度公差 | Tolerance of the length of the blade
 blade_length_tolerance=0.8;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
-side_notch_tolerance=0.1;
+side_notch_tolerance=0.2;
 // 刀片夹背的厚度公差 | Thickness tolerance of the back clamp for the blade, positive values will make the back clamp thicker and negative values will make the back clamp thinner
-back_clamp_thickness_tolerance=0.5;
+back_clamp_thickness_tolerance=0.05;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
 back_clamp_width_tolerance=0.3;
 // 底部刀片座相对于刀片+夹片的厚度所增加的长度 | Length of the bottom blade clamp, which is the part of the blade that protrudes from the blade holder and can cut the reed
@@ -19,12 +19,15 @@ handle_axis_hole_tolerance=0.1;
 handle_axis_length_tolerance=0.2;
 // 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
 upper_blade_holder_slot_tolerance=0.2;
+// 顶部刀片夹具宽度的公差 | Tolerance of the width of the upper blade holder
+upper_blade_holder_width_tolerance=0.4;
 // 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
 handle_wall_tolerance=0.5;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=0.2;
+
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -88,13 +91,13 @@ hole_diameter=2;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
-side_notch_width=2.6;
+side_notch_width=2.9;
 // 刀片侧面缺口的长度 | Length of the side notch on the blade
-side_notch_length=3.5;
+side_notch_length=3.7;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
 side_notch_edge_distance=9.6;
 // 刀片背部夹具的厚度 | Thickness of the back clamp for the blade
-back_clamp_thickness=0.1;
+back_clamp_thickness=0.2;
 // 刀片背部夹具的宽度 | Width of the back clamp for the blade
 back_clamp_width=7;
 
@@ -233,4 +236,4 @@ blade_slot_length=blade_length+blade_length_tolerance;
 // 顶部刀片夹具的基座高度 | Base height of the upper blade holder
 upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position;
 // 顶部刀片夹片的高度 | Height of the upper blade clamp
-upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height;
+upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height - upper_blade_holder_width_tolerance;
