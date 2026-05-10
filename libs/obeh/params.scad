@@ -217,6 +217,8 @@ mandrel_diameter=4.6;
 tightening_screw_head_diameter=15;
 // 固定螺丝头部高度 | Height of the head of the tightening screw
 tightening_screw_head_height=10;
+// 固定螺丝高度 | Height of the tightening screw
+tightening_screw_height=18;
 
 
 

@@ -69,3 +69,9 @@ module make_chamfered_cube_with_round_corners(
     }
 }
 
+
+function handle_rotate_angle(x, y, z) = 
+    // x and y are the horizental and vertical distance between the handle axis point 
+    // and the contact point,
+    // z is the distance between axis point and the surface of the handle
+    90-asin(x/sqrt(x^2 + y^2))-asin(z/sqrt(x^2 + y^2));

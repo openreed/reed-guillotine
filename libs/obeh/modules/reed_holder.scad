@@ -176,7 +176,7 @@ module reed_holder() {
 
 module tightening_screw() {
     spec = screw_info(
-        format("{},{:.2f}", [reed_holder_screw_type, reed_holder_height+0.01]), 
+        format("{},{:.2f}", [reed_holder_screw_type, tightening_screw_height]), 
         head="socket"
     );
     newspec = struct_set(

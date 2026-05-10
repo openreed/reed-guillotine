@@ -56,7 +56,9 @@ module build_body() {
                     width = width, 
                     height = base_height, 
                     corner_fillet = base_corner_fillet, 
-                    edge_chamfer = base_edge_chamfer
+                    edge_chamfer = base_edge_chamfer,
+                    $fa=0.5,
+                    $fs=0.1
                 );
                 // blade holder front skirt
                 translate([wall_right_x_position, 0, base_height/2])
@@ -267,20 +269,21 @@ module build_body() {
                     wall_screw_type, 
                     anchor=TOP, 
                     thread=true,
-                    tolerance="8G"
+                    tolerance="8G",
+                    $fa=0.5,
+                    $fs=0.1,
                 );
             translate([wall_screw_x_positions[i], width - wall_screw_center_side_distance, wall_height+base_height])
                 screw_hole(
                     wall_screw_type, 
                     anchor=TOP, 
                     thread=true,
-                    tolerance="8G"
+                    tolerance="8G",
+                    $fa=0.5,
+                    $fs=0.1,
                 );
             }
         }
-
-
-        
     }
 }
 
