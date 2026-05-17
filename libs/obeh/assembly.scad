@@ -21,6 +21,7 @@ build_body();
 // bottom blade settings
 translate([scale_zero_x_position, width/2, scale_zero_z_position]) 
 rotate([90,0,90]) 
+    color(c = [0.9,0.9,0.9])
     blade();
 
 translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height, width/2, scale_zero_z_position-blade_width])
@@ -35,6 +36,7 @@ rotate([180,0,-90])
 
 translate([scale_zero_x_position, width/2, base_height+wall_height-blade_width]) 
 rotate([90,180,90]) 
+    color(c = [0.9,0.9,0.9]) 
     blade();
 
 translate([length-slot_length-upper_blade_holder_width_tolerance, width/2, base_height+wall_height])
@@ -72,3 +74,6 @@ reed_holder();
 translate([66 + reed_holder_screw_x_position, width/2, tightening_screw_head_height+tightening_screw_height+base_height-slot_height])
 rotate([180,0,0])
     tightening_screw();
+
+
+echo("Blade travel:", blade_travel_distance);
