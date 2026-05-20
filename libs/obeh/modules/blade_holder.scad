@@ -132,12 +132,12 @@ module upper_blade_holder(base_height){
     // two sliders on the upper blade holder
     translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
         cuboid(
-            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length, upper_blade_holder_slider_size],
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
             anchor=BACK+BOTTOM
         );
     translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
         cuboid(
-            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length, upper_blade_holder_slider_size],
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
             anchor=BACK+BOTTOM
          );}
 

@@ -27,7 +27,8 @@ handle_wall_tolerance=0.5;
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=0.2;
-
+// 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
+blade_engagement_tolerance=0.1;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -83,7 +84,7 @@ scale_font_size=4.6;
 // 刀片长度 | Length of the blade
 blade_length=39;
 // 刀片宽度 | Width of the blade
-blade_width=19;
+blade_width=19.4;
 // 刀片厚度 | Thickness of the blade
 blade_thickness=0.23;
 // 刀片上孔的直径 | Diameter of the hole on the blade
@@ -244,4 +245,4 @@ upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickn
 blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
 
 // 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
-upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_size;
+upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_length;
