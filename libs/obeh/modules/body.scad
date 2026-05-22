@@ -114,7 +114,7 @@ module build_body() {
 
         // scale bars
         for(i = [scale_range[0]:1:scale_range[1]]){
-            translate([scale_zero_x_position + i + scale_tolerance, width/2+slot_top_width/2+slot_top_corner_fillet_length, base_height-0.01])
+            translate([scale_zero_x_position + i, width/2+slot_top_width/2+slot_top_corner_fillet_length, base_height-0.01])
             rotate([0,0,90])
                 if(i % 10 == 0){
                     scale(length=scale_bar_major_length, width=scale_bar_width, height=scale_bar_height+0.01, content=str(i), content_bar_distance=scale_font_distance, font_size=scale_font_size);

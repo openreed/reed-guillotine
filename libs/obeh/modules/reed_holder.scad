@@ -170,6 +170,20 @@ module reed_holder() {
                     $fs=0.1,
                 );
         }
+
+        // notches
+        translate([staple_slot_length - scale_tolerance, reed_holder_width/2+0.01, slot_height])
+        cuboid(
+            size=[scale_bar_width, reed_holder_notch_depth+0.01, reed_holder_notch_height],
+            anchor=BACK+BOTTOM,
+        );
+
+        translate([reed_holder_length - mandrel_slot_depth + scale_tolerance, -reed_holder_width/2-0.01, slot_height])
+        cuboid(
+            size=[scale_bar_width, reed_holder_notch_depth+0.01, reed_holder_notch_height],
+            anchor=FRONT+BOTTOM,
+        );
+        
     }
 }
 

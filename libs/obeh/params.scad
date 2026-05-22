@@ -1,8 +1,8 @@
 // 该文件包括了哨片断头台的参数 | This file includes parameters of the guillotine for the blade.
 
 /*[公差 | Tolerances]*/
-// 刻度的公差，正值会使刻度远离零刻线，负值会使刻度靠近零刻线 | Tolerance of the scale, positive values will make the scale bars come farther from the zero point, while negative values will make the scale bars come closer to the zero point
-scale_tolerance=0.3;
+// 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
+scale_tolerance=0;
 // 刀片长度公差 | Tolerance of the length of the blade
 blade_length_tolerance=0.8;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
@@ -26,7 +26,7 @@ handle_wall_tolerance=0.5;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
-reed_holder_width_tolerance=0.2;
+reed_holder_width_tolerance=0.05;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
 blade_engagement_tolerance=0.1;
 
@@ -198,11 +198,15 @@ reed_holder_length=40;
 // 哨片座高度 | Height of the reed holder
 reed_holder_height=15;
 // 哨片座圆角 | Fillet radius of the reed holder
-reed_holder_fillet=0.5;
+reed_holder_fillet=0.4;
 // 哨座槽长度 | Length of the staple slot on the reed holder
 staple_slot_length=23;
 // 哨座槽半径 | Diameter of the staple slot
 staple_slot_diameter=5.8;
+// 哨片座刻痕深度 | Depth of the scale notches on the reed holder
+reed_holder_notch_depth=0.4;
+// 哨片座刻痕高度 | Height of the scale notches on the reed holder
+reed_holder_notch_height=3;
 // 哨片座螺孔类型 "型号" | Type of the screw holes on the reed holder, in the format of "type"
 reed_holder_screw_type="M10";
 // 哨片座螺孔x坐标 | x position of the screw holes on the reed holder
@@ -214,9 +218,9 @@ mandrel_slot_diameter=7.1;
 // 哨片锥直径 | Diameter of the mandrel
 mandrel_diameter=4.6;
 // 固定螺丝头部宽度 | Diameter of the head of the tightening screw
-tightening_screw_head_diameter=15;
+tightening_screw_head_diameter=13;
 // 固定螺丝头部高度 | Height of the head of the tightening screw
-tightening_screw_head_height=10;
+tightening_screw_head_height=8;
 // 固定螺丝高度 | Height of the tightening screw
 tightening_screw_height=18;
 
