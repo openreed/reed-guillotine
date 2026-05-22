@@ -26,9 +26,9 @@ handle_wall_tolerance=0.5;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
-reed_holder_width_tolerance=0.05;
+reed_holder_width_tolerance=-0.05;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
-blade_engagement_tolerance=0.1;
+blade_engagement_tolerance=0.2;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -36,7 +36,7 @@ length=132;
 // 基座宽度，也是总宽度 | Width of the base
 width=46;
 // 基座高度 | Height of the base
-base_height=10;
+base_height=14;
 // 基座边角的圆角半径 | Fillet radius of the corners of the base
 base_corner_fillet=10;
 // 基座边缘的倒角距离 | Chamfer distance of the edges of the base
@@ -52,7 +52,7 @@ slot_bottom_angle=72;
 // 滑槽长度 | Length of the slot for the reed holder
 slot_length=92;
 // 滑槽高度 | Height of the slot for the reed holder
-slot_height=4;
+slot_height=6;
 // 滑槽顶部两个边缘的圆角半径 | Fillet radius of the two top edges of the slot for the reed holder
 slot_top_corner_fillet=0.4;
 
@@ -126,9 +126,9 @@ upper_blade_holder_slider_spacing=24;
 
 /*[弹簧参数 | Spring Parameters]*/
 // 弹簧座直径 | Diameter of the spring seat for the upper blade holder
-spring_seat_diameter=3.5;
+spring_seat_diameter=4;
 // 弹簧座高度 | Height of the spring seat for the upper blade holder
-spring_seat_height=3.5;
+spring_seat_height=5;
 
 
 /*[墙参数 | Wall Parameters]*/
@@ -196,13 +196,13 @@ lid_groove_height_tolerance=0.5;
 // 哨片座长度 | Length of the reed holder
 reed_holder_length=40;
 // 哨片座高度 | Height of the reed holder
-reed_holder_height=15;
+reed_holder_height=16;
 // 哨片座圆角 | Fillet radius of the reed holder
 reed_holder_fillet=0.4;
 // 哨座槽长度 | Length of the staple slot on the reed holder
 staple_slot_length=23;
-// 哨座槽半径 | Diameter of the staple slot
-staple_slot_diameter=5.8;
+// 哨座槽直径 | Diameter of the staple slot
+staple_slot_diameter=7.8;
 // 哨片座刻痕深度 | Depth of the scale notches on the reed holder
 reed_holder_notch_depth=0.4;
 // 哨片座刻痕高度 | Height of the scale notches on the reed holder
@@ -250,3 +250,6 @@ blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_positio
 
 // 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
 upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_length;
+
+// 哨片座哨片中心高度 | Height of the center of reed in the reed holder
+reed_holder_center_height=scale_zero_z_position-base_height+slot_height;

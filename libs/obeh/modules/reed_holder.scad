@@ -25,7 +25,7 @@ module reed_holder() {
             );
 
             cuboid(
-                size=[reed_holder_length, reed_holder_width, scale_zero_z_position-base_height],  // height of the reed should be consistent with height of the blade
+                size=[reed_holder_length, reed_holder_width, reed_holder_center_height],  // height of the reed should be consistent with height of the blade
                 anchor=LEFT+BOTTOM,
                 rounding=reed_holder_fillet,
                 $fa=0.5,
@@ -67,7 +67,7 @@ module reed_holder() {
                 $fa=0.5,
                 $fs=0.1,
             );
-        translate([0, staple_slot_diameter/2, scale_zero_z_position-base_height])
+        translate([0, staple_slot_diameter/2, reed_holder_center_height])
         rotate([-10,0,0])
             rounding_edge_mask(
                 l=staple_slot_length,
@@ -78,7 +78,7 @@ module reed_holder() {
                 $fa=0.5,
                 $fs=0.1,
             );
-        translate([0, -staple_slot_diameter/2, scale_zero_z_position-base_height])
+        translate([0, -staple_slot_diameter/2, reed_holder_center_height])
         rotate([-90,0,0])
             rounding_edge_mask(
                 l=staple_slot_length,
@@ -92,7 +92,7 @@ module reed_holder() {
         
 
         // staple slot
-        translate([staple_slot_length, 0, scale_zero_z_position-base_height])
+        translate([staple_slot_length, 0, reed_holder_center_height])
             cyl(
                 h = staple_slot_length+0.01, 
                 r = staple_slot_diameter/2, 
@@ -118,14 +118,14 @@ module reed_holder() {
             union() {
                 translate([reed_holder_length+0.01, 0, reed_holder_height+0.01])
                     cuboid(
-                        size=[mandrel_slot_depth+0.01, mandrel_slot_diameter, reed_holder_height-scale_zero_z_position+base_height+0.01],
+                        size=[mandrel_slot_depth+0.01, mandrel_slot_diameter, reed_holder_height-reed_holder_center_height+0.01],
                         anchor=TOP+RIGHT,
                         rounding=-reed_holder_fillet,
                         edges=[TOP],
                         $fa=0.5,
                         $fs=0.1,
                     );
-                translate([reed_holder_length+0.01, 0, scale_zero_z_position-base_height]) 
+                translate([reed_holder_length+0.01, 0, reed_holder_center_height]) 
                     cyl(
                         h=mandrel_slot_depth+0.01,
                         d=mandrel_slot_diameter,
@@ -136,7 +136,7 @@ module reed_holder() {
                         $fs=0.1,
                     );
                 // edge fillet
-                translate([reed_holder_length+0.01, -mandrel_slot_diameter/2, scale_zero_z_position-base_height]) 
+                translate([reed_holder_length+0.01, -mandrel_slot_diameter/2, reed_holder_center_height]) 
                 rotate([0,0,180])
                     rounding_edge_mask(
                         l=reed_holder_height+0.01,
@@ -147,7 +147,7 @@ module reed_holder() {
                         $fa=0.5,
                         $fs=0.1,
                     );
-                translate([reed_holder_length+0.01, mandrel_slot_diameter/2, scale_zero_z_position-base_height])
+                translate([reed_holder_length+0.01, mandrel_slot_diameter/2, reed_holder_center_height])
                 rotate([0,0,90])
                     rounding_edge_mask(
                         l=reed_holder_height+0.01,
@@ -159,7 +159,7 @@ module reed_holder() {
                         $fs=0.1,
                     );
             }
-            translate([reed_holder_length-mandrel_slot_depth, 0, scale_zero_z_position-base_height])
+            translate([reed_holder_length-mandrel_slot_depth, 0, reed_holder_center_height])
                 cyl(
                     h=mandrel_slot_depth+0.01,
                     d=mandrel_diameter,
