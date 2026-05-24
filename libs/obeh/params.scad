@@ -43,6 +43,8 @@ base_corner_fillet=10;
 base_edge_chamfer=1;
 // 基座底部空洞的长度 | Length of the hole at the bottom of the base
 bottom_hole_length=10;
+// 基座用来避开螺丝刀干涉的槽的高度 | Height of the slot on the base for avoiding interference with the screwdriver
+screw_driver_slot_height=8;
 
 /*[滑槽参数 | Slot Parameters]*/
 // 滑槽顶部的宽度 | Width of the top of the slot for the reed holder
@@ -146,10 +148,12 @@ wall_screw_x_positions=[28];
 wall_screw_type="M5,10";
 // 墙上公凸中心到后墙的距离 | Distance between the center of the wall tongue and the back wall
 wall_tongue_center_back_distance=4;
+// 墙上多组公凸的x坐标，list | x positions of the sets of wall tongues, in a list
+wall_tongue_x_positions=[15, 22];
 // 墙上公凸的高度 | Height of the wall tongue
-wall_tongue_height=3;
+wall_tongue_height=2.5;
 // 墙上公凸的直径 | Diameter of the wall tongue
-wall_tongue_diameter=5;
+wall_tongue_diameter=3.5;
 // 墙前档板的厚度 | Thickness of the wall front skirt
 wall_skirt_thickness=3;
 
@@ -183,7 +187,7 @@ lid_height=5;
 // 顶盖上螺丝顶孔深度 | Depth of the screw slots on the lid
 lid_screw_slot_head_depth=3;
 // 顶盖上螺丝顶孔直径 | Diameter of the screw slots on the lid
-lid_screw_slot_head_diameter=7;
+lid_screw_slot_head_diameter=8;
 // 顶盖上螺丝孔的直径 | Diameter of the screw slots on the lid
 lid_screw_slot_diameter=5.2;
 // 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid

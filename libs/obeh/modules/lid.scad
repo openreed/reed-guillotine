@@ -71,22 +71,24 @@ module lid() {
         }
 
         // grooves for wall tongues
-        translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, wall_tongue_center_back_distance, -0.01])
-            cylinder(
-                d=wall_tongue_diameter + lid_groove_diameter_tolerance, 
-                h=wall_tongue_height + lid_groove_height_tolerance + 0.01, 
-                anchor=BOTTOM, 
-                $fa=0.5, 
-                $fs=0.1
-            );
-        translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, width - wall_tongue_center_back_distance, -0.01])
-            cylinder(
-                d=wall_tongue_diameter + lid_groove_diameter_tolerance, 
-                h=wall_tongue_height + lid_groove_height_tolerance + 0.01, 
-                anchor=BOTTOM, 
-                $fa=0.5, 
-                $fs=0.1,
-            );
+        for(x = wall_tongue_x_positions) {
+            translate([x, wall_tongue_center_back_distance, -0.01])
+                cylinder(
+                    d=wall_tongue_diameter + lid_groove_diameter_tolerance, 
+                    h=wall_tongue_height + lid_groove_height_tolerance + 0.01, 
+                    anchor=BOTTOM, 
+                    $fa=0.5, 
+                    $fs=0.1
+                );
+            translate([x, width - wall_tongue_center_back_distance, -0.01])
+                cylinder(
+                    d=wall_tongue_diameter + lid_groove_diameter_tolerance, 
+                    h=wall_tongue_height + lid_groove_height_tolerance + 0.01, 
+                    anchor=BOTTOM, 
+                    $fa=0.5, 
+                    $fs=0.1,
+                );
+        }
 
     }
     

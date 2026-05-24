@@ -110,6 +110,13 @@ module build_body() {
                     anchor=RIGHT+BOTTOM
                 );
 
+            // screw driver slot
+            translate([-0.01, width/2, base_height+0.01])
+                cuboid(
+                    size=[wall_right_x_position+0.01, width-2*wall_thickness, screw_driver_slot_height+0.01],
+                    anchor=LEFT+TOP
+                );
+
         }
 
         // scale bars
@@ -183,22 +190,24 @@ module build_body() {
                         );
                 }
                 // wall tongues to connect the lid
-                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, wall_tongue_center_back_distance, wall_height+base_height-0.01])
-                    cylinder(
-                        d=wall_tongue_diameter, 
-                        h=wall_tongue_height+0.01, 
-                        anchor=BOTTOM, 
-                        $fa=0.5, 
-                        $fs=0.1
-                    );
-                translate([wall_right_x_position-wall_length+wall_tongue_center_back_distance, width - wall_tongue_center_back_distance, wall_height+base_height-0.01])
-                    cylinder(
-                        d=wall_tongue_diameter, 
-                        h=wall_tongue_height+0.01, 
-                        anchor=BOTTOM, 
-                        $fa=0.5, 
-                        $fs=0.1
-                    );
+                for(x = wall_tongue_x_positions) {
+                    translate([x, wall_tongue_center_back_distance, wall_height+base_height-0.01])
+                        cylinder(
+                            d=wall_tongue_diameter, 
+                            h=wall_tongue_height+0.01, 
+                            anchor=BOTTOM, 
+                            $fa=0.5, 
+                            $fs=0.1
+                        );
+                    translate([x, width - wall_tongue_center_back_distance, wall_height+base_height-0.01])
+                        cylinder(
+                            d=wall_tongue_diameter, 
+                            h=wall_tongue_height+0.01, 
+                            anchor=BOTTOM, 
+                            $fa=0.5, 
+                            $fs=0.1
+                        );
+                }
             }
 
             // cut the holes on the walls for the handle
