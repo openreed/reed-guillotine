@@ -116,8 +116,8 @@ module blade_clamp(height) {
     translate([blade_slot_length/2 + 0.01, blade_width-side_notch_edge_distance, height-0.01])
     rotate([0,0,180])
         side_notch_clamp(
-            width=side_notch_width + side_notch_tolerance, 
-            length=side_notch_length + side_notch_tolerance + 0.01, 
+            width=side_notch_width - side_notch_tolerance, 
+            length=side_notch_length - side_notch_tolerance + 0.01, 
             height=side_notch_height+0.02
         );
 }

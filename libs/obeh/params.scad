@@ -4,9 +4,9 @@
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
 scale_tolerance=0;
 // 刀片长度公差 | Tolerance of the length of the blade
-blade_length_tolerance=0.8;
+blade_length_tolerance=1.0;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
-side_notch_tolerance=0.1;
+side_notch_tolerance=0.2;
 // 刀片夹背的厚度公差 | Thickness tolerance of the back clamp for the blade, positive values will make the back clamp thicker and negative values will make the back clamp thinner
 back_clamp_thickness_tolerance=0.1;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
@@ -14,13 +14,17 @@ back_clamp_width_tolerance=0.3;
 // 底部刀片座相对于刀片+夹片的厚度所增加的长度 | Length of the bottom blade clamp, which is the part of the blade that protrudes from the blade holder and can cut the reed
 bottom_blade_seat_tolerance=0.1;
 // 手柄转轴孔公差 | Tolerance of the hole for the handle axis
-handle_axis_hole_tolerance=0.1;
+handle_axis_hole_tolerance=0.05;
 // 手柄转轴长度公差 | Tolerance of the length of the handle axis, positive values will make the handle axis longer and negative values will make the handle axis shorter
 handle_axis_length_tolerance=0.2;
 // 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
 upper_blade_holder_slot_tolerance=0.2;
 // 顶部刀片夹具宽度的公差，用来控制刀片座的滑动配合 | Tolerance of the width of the upper blade holder, used for controlling the sliding fit of the blade holder
 upper_blade_holder_width_tolerance=0.6;
+// 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid
+lid_groove_diameter_tolerance=0.1;
+// 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
+lid_groove_height_tolerance=0.5;
 // 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
 handle_wall_tolerance=0.5;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
@@ -94,7 +98,7 @@ hole_diameter=2;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
-side_notch_width=2.8;
+side_notch_width=2.9;
 // 刀片侧面缺口的长度 | Length of the side notch on the blade
 side_notch_length=4.0;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
@@ -149,13 +153,13 @@ wall_screw_type="M5,10";
 // 墙上公凸中心到后墙的距离 | Distance between the center of the wall tongue and the back wall
 wall_tongue_center_back_distance=4;
 // 墙上多组公凸的x坐标，list | x positions of the sets of wall tongues, in a list
-wall_tongue_x_positions=[15, 22];
+wall_tongue_x_positions=[15, 42.5];
 // 墙上公凸的高度 | Height of the wall tongue
 wall_tongue_height=2.5;
 // 墙上公凸的直径 | Diameter of the wall tongue
 wall_tongue_diameter=3.5;
 // 墙前档板的厚度 | Thickness of the wall front skirt
-wall_skirt_thickness=3;
+wall_skirt_thickness=6;
 
 
 /*[手柄参数 | Handle Parameters]*/
@@ -190,10 +194,6 @@ lid_screw_slot_head_depth=3;
 lid_screw_slot_head_diameter=8;
 // 顶盖上螺丝孔的直径 | Diameter of the screw slots on the lid
 lid_screw_slot_diameter=5.2;
-// 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid
-lid_groove_diameter_tolerance=0.2;
-// 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
-lid_groove_height_tolerance=0.5;
 
 
 /*[哨片座参数 | Reed Holder Parameters]*/
