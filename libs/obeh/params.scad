@@ -6,7 +6,7 @@ scale_tolerance=0;
 // 刀片长度公差 | Tolerance of the length of the blade
 blade_length_tolerance=1.0;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
-side_notch_tolerance=0.2;
+side_notch_tolerance=0.1;
 // 刀片夹背的厚度公差 | Thickness tolerance of the back clamp for the blade, positive values will make the back clamp thicker and negative values will make the back clamp thinner
 back_clamp_thickness_tolerance=0.1;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
