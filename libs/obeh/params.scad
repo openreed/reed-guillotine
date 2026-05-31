@@ -100,7 +100,7 @@ hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
 side_notch_width=2.9;
 // 刀片侧面缺口的长度 | Length of the side notch on the blade
-side_notch_length=4.0;
+side_notch_length=3.8;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
 side_notch_edge_distance=9.6;
 // 刀片背部夹具的厚度 | Thickness of the back clamp for the blade
