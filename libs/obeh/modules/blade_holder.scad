@@ -83,6 +83,27 @@ module bottom_blade_holder(height) {
 }
 
 
+module upper_blade_holder(base_height){
+    rotate([-90,0,0]) translate([0, -(blade_width-blade_protrusion_length), 0])
+    {translate([0, blade_width-blade_protrusion_length, base_height])
+    rotate([0,180,180])
+        bottom_blade_holder(height=base_height);
+    
+    // two sliders on the upper blade holder
+    translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
+        cuboid(
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
+            anchor=BACK+BOTTOM
+        );
+    translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
+        cuboid(
+            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
+            anchor=BACK+BOTTOM
+         );}
+
+}
+
+
 module blade_clamp(height) {
     difference() {
         // basic cuboid
@@ -123,33 +144,29 @@ module blade_clamp(height) {
 }
 
 
-module upper_blade_holder(base_height){
-    rotate([-90,0,0]) translate([0, -(blade_width-blade_protrusion_length), 0])
-    {translate([0, blade_width-blade_protrusion_length, base_height])
-    rotate([0,180,180])
-        bottom_blade_holder(height=base_height);
-    
-    // two sliders on the upper blade holder
-    translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
-        cuboid(
-            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-            anchor=BACK+BOTTOM
-        );
-    translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, base_height])
-        cuboid(
-            size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-            anchor=BACK+BOTTOM
-         );}
+module upper_blade_clamp() {
+    difference() {
+        blade_clamp(height=upper_blade_clamp_height);
 
+        translate([0, blade_width-hole_edge_distance, -0.01]) 
+            cylinder(d=upper_blade_clamp_screw_countersink_diameter, h=upper_blade_clamp_screw_countersink_height+0.01, anchor=BOTTOM, $fa=0.5, $fs=0.1);
+
+    }
 }
+
+
+module bottom_blade_clamp() {
+    blade_clamp(height=blade_clamp_height);
+}
+
 
 // upper blade holder clamp
 translate([-30, 0, 0]) 
-    blade_clamp(height=upper_blade_clamp_height);
+    upper_blade_clamp();
 
 // bottom blade holder clamp
 translate([-30,-20,0]) 
-    blade_clamp(height=blade_clamp_height);
+    bottom_blade_clamp();
 
 translate([30, 0, 0])
 upper_blade_holder(base_height = upper_blade_holder_base_height);

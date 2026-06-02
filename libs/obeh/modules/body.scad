@@ -163,13 +163,13 @@ module build_body() {
                 difference() {
                     translate([wall_right_x_position + 0.01, 0, 0])
                         cuboid(
-                            size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
+                            size=[wall_length+lid_back_thickness+0.01, wall_thickness, wall_height+base_height], 
                             anchor=RIGHT+BOTTOM+FRONT
                         );
                     // chamfer the edge
-                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+0.01), 0, 0])
+                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+lid_back_thickness+0.01), 0, 0])
                         chamfer_edge_mask(
-                            l = wall_length+0.02, 
+                            l = wall_length+lid_back_thickness+0.02, 
                             chamfer=base_edge_chamfer + 0.01, 
                             orient=RIGHT,
                         );
@@ -178,13 +178,13 @@ module build_body() {
                 difference() {
                     translate([wall_right_x_position + 0.01, width, 0])
                         cuboid(
-                            size=[wall_length+0.01, wall_thickness, wall_height+base_height], 
+                            size=[wall_length+lid_back_thickness+0.01, wall_thickness, wall_height+base_height], 
                             anchor=RIGHT+BOTTOM+BACK
                         );
                     // chamfer the edge
-                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+0.01), width, 0])
+                    translate([(wall_right_x_position + 0.01) - 0.5*(wall_length+lid_back_thickness+0.01), width, 0])
                         chamfer_edge_mask(
-                            l = wall_length+0.02, 
+                            l = wall_length+lid_back_thickness+0.02, 
                             chamfer=base_edge_chamfer + 0.01, 
                             orient=RIGHT,
                         );

@@ -2,7 +2,7 @@
 
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
-scale_tolerance=0;
+scale_tolerance=0.2;
 // 刀片长度公差 | Tolerance of the length of the blade
 blade_length_tolerance=1.0;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
@@ -26,13 +26,15 @@ lid_groove_diameter_tolerance=0.1;
 // 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
 lid_groove_height_tolerance=0.5;
 // 手柄和墙公差 | Tolerance between the handle and the walls, positive values will make the handle farther from the walls and negative values will make the handle closer to the walls
-handle_wall_tolerance=0.5;
+handle_wall_tolerance=0.4;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=-0.05;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
-blade_engagement_tolerance=0.2;
+blade_engagement_tolerance=0.3;
+// 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
+blade_front_back_fit_tolerance=0;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -94,7 +96,7 @@ blade_width=19.4;
 // 刀片厚度 | Thickness of the blade
 blade_thickness=0.23;
 // 刀片上孔的直径 | Diameter of the hole on the blade
-hole_diameter=2;
+hole_diameter=2.2;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
@@ -126,6 +128,10 @@ upper_blade_holder_slider_size=4.7;
 upper_blade_holder_slider_length=10;
 // 顶部刀片夹具的两个滑块的中心间距 | Center distance between the two sliders of the upper blade holder
 upper_blade_holder_slider_spacing=24;
+// 顶部刀片夹片螺孔沉头直径 | Countersunk diameter of the screw holes for the upper blade clamp
+upper_blade_clamp_screw_countersink_diameter=4.2;
+// 顶部刀片夹片螺孔沉头高度 | Countersunk height of the screw holes for the upper blade clamp
+upper_blade_clamp_screw_countersink_height=1.2;
 
 
 
@@ -134,7 +140,7 @@ upper_blade_holder_slider_spacing=24;
 // 弹簧座直径 | Diameter of the spring seat for the upper blade holder
 spring_seat_diameter=4;
 // 弹簧座高度 | Height of the spring seat for the upper blade holder
-spring_seat_height=5;
+spring_seat_height=4;
 
 
 /*[墙参数 | Wall Parameters]*/
@@ -194,6 +200,10 @@ lid_screw_slot_head_depth=3;
 lid_screw_slot_head_diameter=8;
 // 顶盖上螺丝孔的直径 | Diameter of the screw slots on the lid
 lid_screw_slot_diameter=5.2;
+// 顶盖后部厚度 | Thickness of the back part of the lid
+lid_back_thickness=1.7;
+// 顶盖倒角 | Chamfer of the lid
+lid_chamfer=0.6;
 
 
 /*[哨片座参数 | Reed Holder Parameters]*/
@@ -235,7 +245,7 @@ slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2
 cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
 wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance-wall_holder_distance;
-wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position);
+wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position) + lid_back_thickness;
 // 手柄宽度 | Width of the handle
 handle_width=width-2*wall_thickness-handle_wall_tolerance;
 // 哨片座宽度 | Width of the reed holder
@@ -244,7 +254,7 @@ reed_holder_width=slot_top_width-reed_holder_width_tolerance;
 blade_slot_length=blade_length+blade_length_tolerance;
 
 // 顶部刀片夹具的基座高度 | Base height of the upper blade holder
-upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position;
+upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2 + blade_front_back_fit_tolerance;
 // 顶部刀片夹片的高度 | Height of the upper blade clamp
 upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height - upper_blade_holder_width_tolerance;
 

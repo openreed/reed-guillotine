@@ -18,7 +18,7 @@ module lid() {
                 cuboid(
                     size=[wall_total_length, wall_thickness, lid_height], 
                     anchor=BOTTOM+RIGHT+FRONT, 
-                    chamfer=1,
+                    chamfer=lid_chamfer,
                     edges=TOP,
                 );
             // right body
@@ -26,7 +26,15 @@ module lid() {
                 cuboid(
                     size=[wall_total_length, wall_thickness, lid_height], 
                     anchor=BOTTOM+RIGHT+BACK,
-                    chamfer=1,
+                    chamfer=lid_chamfer,
+                    edges=TOP,
+                );
+            // back body
+            translate([length-slot_length+wall_skirt_thickness - wall_total_length, width/2, 0])
+                cuboid(
+                    size=[lid_back_thickness, width, lid_height], 
+                    anchor=BOTTOM+LEFT,
+                    chamfer=lid_chamfer,
                     edges=TOP,
                 );
         }
