@@ -30,13 +30,16 @@ module lid() {
                     edges=TOP,
                 );
             // back body
-            translate([length-slot_length+wall_skirt_thickness - wall_total_length, width/2, 0])
-                cuboid(
-                    size=[lid_back_thickness, width, lid_height], 
-                    anchor=BOTTOM+LEFT,
-                    chamfer=lid_chamfer,
-                    edges=TOP,
-                );
+            if(lid_back_thickness != 0){
+                translate([length-slot_length+wall_skirt_thickness - wall_total_length, width/2, 0])
+                    cuboid(
+                        size=[lid_back_thickness, width, lid_height], 
+                        anchor=BOTTOM+LEFT,
+                        chamfer=lid_chamfer,
+                        edges=TOP,
+                    );
+            }
+                
         }
 
         // screw holes

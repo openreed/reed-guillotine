@@ -96,7 +96,7 @@ blade_width=19.4;
 // 刀片厚度 | Thickness of the blade
 blade_thickness=0.23;
 // 刀片上孔的直径 | Diameter of the hole on the blade
-hole_diameter=2.2;
+hole_diameter=2.1;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
@@ -201,7 +201,7 @@ lid_screw_slot_head_diameter=8;
 // 顶盖上螺丝孔的直径 | Diameter of the screw slots on the lid
 lid_screw_slot_diameter=5.2;
 // 顶盖后部厚度 | Thickness of the back part of the lid
-lid_back_thickness=1.7;
+lid_back_thickness=0;
 // 顶盖倒角 | Chamfer of the lid
 lid_chamfer=0.6;
 
@@ -216,7 +216,7 @@ reed_holder_fillet=0.4;
 // 哨座槽长度 | Length of the staple slot on the reed holder
 staple_slot_length=23;
 // 哨座槽直径 | Diameter of the staple slot
-staple_slot_diameter=7.8;
+staple_slot_diameter=6.8;
 // 哨片座刻痕深度 | Depth of the scale notches on the reed holder
 reed_holder_notch_depth=0.4;
 // 哨片座刻痕高度 | Height of the scale notches on the reed holder
