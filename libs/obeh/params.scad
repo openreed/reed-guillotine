@@ -32,9 +32,9 @@ handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=-0.05;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
-blade_engagement_tolerance=0.3;
+blade_engagement_tolerance=0.2;
 // 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
-blade_front_back_fit_tolerance=0;
+blade_front_back_fit_tolerance=0.2;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
