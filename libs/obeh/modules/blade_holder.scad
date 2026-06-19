@@ -148,8 +148,8 @@ module upper_blade_clamp() {
     difference() {
         blade_clamp(height=upper_blade_clamp_height);
 
-        translate([0, blade_width-hole_edge_distance, -0.01]) 
-            cylinder(d=upper_blade_clamp_screw_countersink_diameter, h=upper_blade_clamp_screw_countersink_height+0.01, anchor=BOTTOM, $fa=0.5, $fs=0.1);
+        //translate([0, blade_width-hole_edge_distance, -0.01]) 
+        //    cylinder(d=upper_blade_clamp_screw_countersink_diameter, h=upper_blade_clamp_screw_countersink_height+0.01, anchor=BOTTOM, $fa=0.5, $fs=0.1);
 
     }
 }

@@ -34,7 +34,7 @@ reed_holder_width_tolerance=-0.05;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
 blade_engagement_tolerance=0.2;
 // 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
-blade_front_back_fit_tolerance=0.2;
+blade_front_back_fit_tolerance=0.3;
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -48,7 +48,7 @@ base_corner_fillet=10;
 // 基座边缘的倒角距离 | Chamfer distance of the edges of the base
 base_edge_chamfer=1;
 // 基座底部空洞的长度 | Length of the hole at the bottom of the base
-bottom_hole_length=10;
+bottom_hole_length=12;
 // 基座用来避开螺丝刀干涉的槽的高度 | Height of the slot on the base for avoiding interference with the screwdriver
 screw_driver_slot_height=8;
 
@@ -116,8 +116,7 @@ back_clamp_width=7;
 blade_protrusion_length=2;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=2;
-// 刀片夹片的高度 | Height of the blade clamp
-blade_clamp_height=2;
+
 
 
 /*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
@@ -138,7 +137,7 @@ upper_blade_clamp_screw_countersink_height=1.2;
 
 /*[弹簧参数 | Spring Parameters]*/
 // 弹簧座直径 | Diameter of the spring seat for the upper blade holder
-spring_seat_diameter=4;
+spring_seat_diameter=3.9;
 // 弹簧座高度 | Height of the spring seat for the upper blade holder
 spring_seat_height=4;
 
@@ -230,7 +229,7 @@ mandrel_slot_depth=3.5;
 // 哨片锥槽直径 | Diameter of the mandrel slot
 mandrel_slot_diameter=7.1;
 // 哨片锥直径 | Diameter of the mandrel
-mandrel_diameter=4.6;
+mandrel_diameter=4.5;
 // 固定螺丝头部宽度 | Diameter of the head of the tightening screw
 tightening_screw_head_diameter=13;
 // 固定螺丝头部高度 | Height of the head of the tightening screw
@@ -241,6 +240,12 @@ tightening_screw_height=18;
 
 
 /*[内部参数 | Internal Parameters]*/
+// 顶部刀片夹片的高度 | Height of the upper blade clamp
+// upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height - upper_blade_holder_width_tolerance;
+upper_blade_clamp_height=length-slot_length - scale_zero_x_position - blade_thickness/2 - blade_front_back_fit_tolerance - upper_blade_holder_width_tolerance;
+// 底部刀片夹片的高度 | Height of the blade clamp
+blade_clamp_height=upper_blade_clamp_height;
+
 slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
 cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
@@ -255,9 +260,6 @@ blade_slot_length=blade_length+blade_length_tolerance;
 
 // 顶部刀片夹具的基座高度 | Base height of the upper blade holder
 upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2 + blade_front_back_fit_tolerance;
-// 顶部刀片夹片的高度 | Height of the upper blade clamp
-upper_blade_clamp_height=length-slot_length-wall_right_x_position - blade_thickness - upper_blade_holder_base_height - upper_blade_holder_width_tolerance;
-
 
 // 刀片行程 | Blade travel distance
 blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
