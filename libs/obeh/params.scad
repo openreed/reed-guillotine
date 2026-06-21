@@ -2,7 +2,7 @@
 
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
-scale_tolerance=0.2;
+scale_tolerance=0.3;
 // 刀片长度公差 | Tolerance of the length of the blade
 blade_length_tolerance=1.0;
 // 刀片侧面缺口卡座的公差 | Tolerance of the side notch clamp on the blade holder
