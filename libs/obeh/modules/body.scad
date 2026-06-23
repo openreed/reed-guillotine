@@ -9,7 +9,7 @@ use <blade_holder.scad>
 
 
 module scale(length, width, height, 
-             content, content_bar_distance=5, font_size=2) {
+             content, content_bar_distance=5, font_size=2, font_type="Liberation Sans") {
     /*
     This module models the scale scale of the guillotine.
           +-------------------+
@@ -32,7 +32,7 @@ module scale(length, width, height,
         // Text content
         if(content){
             translate([length + content_bar_distance, 0, 0])
-                text3d(content, h=height, size=font_size, anchor=LEFT+BOTTOM, atype="ycenter");
+                text3d(content, h=height, size=font_size, anchor=LEFT+BOTTOM, atype="ycenter", font=font_type);
         }
         
     }
@@ -124,12 +124,16 @@ module build_body() {
             translate([scale_zero_x_position + i, width/2+slot_top_width/2+slot_top_corner_fillet_length, base_height-0.01])
             rotate([0,0,90])
                 if(i % 10 == 0){
-                    scale(length=scale_bar_major_length, width=scale_bar_width, height=scale_bar_height+0.01, content=str(i), content_bar_distance=scale_font_distance, font_size=scale_font_size);
+                    color([1,1,1])
+                    scale(length=scale_bar_major_length, width=scale_bar_width, height=scale_bar_height+0.01, content=str(i), content_bar_distance=scale_font_distance, font_size=scale_font_size, font_type=scale_font_type);
                 } else if(i % 5 == 0){
+                    color([1,1,1])
                     scale(length=scale_bar_submajor_length, width=scale_bar_width, height=scale_bar_height, content=false);
                 } else if((i - 1) % 5 == 0){
+                    color([1,1,1])
                     scale(length=scale_bar_minor_length, width=scale_bar_width, height=scale_bar_height, content=false);
                 } else {
+                    color([1,1,1])
                     scale(length=max(scale_bar_minor_length - scale_bar_minor_length_diff * abs(i - (floor(i/5)*5+1)), 0), width=scale_bar_width, height=scale_bar_height, content=false);
                 }
         }

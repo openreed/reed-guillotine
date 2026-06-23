@@ -72,11 +72,11 @@ scale_zero_z_position=20;
 // 刻度的范围，单位为毫米 | Range of the scale, in millimeter
 scale_range=[30,80];
 // 主要刻度线的长度，即那些刻度值为10的倍数的刻度线的长度 | Length of the scale bars for those scale values that are multiples of 10, i.e., 30, 40, 50
-scale_bar_major_length=5.8;
+scale_bar_major_length=5.4;
 // 次要刻度线的长度，即那些刻度值为5的倍数但不是10的倍数的刻度线的长度 | Length of the scale bars for those scale values that are multiples of 5 but not multiples of 10, i.e., 35, 45, 55
-scale_bar_submajor_length=5.0;
+scale_bar_submajor_length=4.6;
 // 其他刻度线的长度，即那些刻度值满足{value - 1 mod 5 == 0}的刻度线的长度 | Length of the scale bars for those scale values satisfying {value - 1 mod 5 == 0}, i.e., 31, 36, 41, 46, 51
-scale_bar_minor_length=4.4;
+scale_bar_minor_length=4.0;
 // 其他刻度线的长度差值，即那些刻度值不满足{value - 1 mod 5 == 0}的刻度线的长度等于{scale_bar_minor_length - scale_bar_minor_length_diff * x}，
 scale_bar_minor_length_diff=0.35;
 // 刻度线的宽度 | Width of the scale bars
@@ -84,9 +84,11 @@ scale_bar_width=0.4;
 // 刻度线的高度 | Height of the scale bars
 scale_bar_height=0.4;
 // 刻度线与刻度值文本之间的距离 | Distance between the scale bars and the text content on the scale bars
-scale_font_distance=0.4;
+scale_font_distance=0.3;
 // 刻度值文本的字体大小，单位为毫米，近似等于刻度值文本的高度，具体参见BOSL2文档 | Font size of the text content on the scale bars, in millimeter, approximately equals to the height of the text content, refer to BOSL2 documentation for more details
-scale_font_size=4.6;
+scale_font_size=4.9;
+// 刻度值文本的字体 | Font type of the text content on the scale bars
+scale_font_type="Arial";
 
 /*[刀片参数 | Blade Parameters]*/
 // 刀片长度 | Length of the blade
