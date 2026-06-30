@@ -209,13 +209,13 @@ lid_chamfer=0.6;
 
 /*[哨片座参数 | Reed Holder Parameters]*/
 // 哨片座长度 | Length of the reed holder
-reed_holder_length=40;
+reed_holder_length=46;
 // 哨片座高度 | Height of the reed holder
 reed_holder_height=16;
 // 哨片座圆角 | Fillet radius of the reed holder
 reed_holder_fillet=0.4;
 // 哨座槽长度 | Length of the staple slot on the reed holder
-staple_slot_length=23;
+staple_slot_length=27;
 // 哨座槽直径 | Diameter of the staple slot
 staple_slot_diameter=6.8;
 // 哨片座刻痕深度 | Depth of the scale notches on the reed holder
@@ -225,9 +225,9 @@ reed_holder_notch_height=3;
 // 哨片座螺孔类型 "型号" | Type of the screw holes on the reed holder, in the format of "type"
 reed_holder_screw_type="M10";
 // 哨片座螺孔x坐标 | x position of the screw holes on the reed holder
-reed_holder_screw_x_position=30;
+reed_holder_screw_x_position=34;
 // 哨片锥槽深度 | Depth of the mandrel slot
-mandrel_slot_depth=3.5;
+mandrel_slot_depth=5;
 // 哨片锥槽直径 | Diameter of the mandrel slot
 mandrel_slot_diameter=7.1;
 // 哨片锥直径 | Diameter of the mandrel
