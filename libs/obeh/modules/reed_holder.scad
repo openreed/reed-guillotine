@@ -6,7 +6,7 @@ include <BOSL2/screws.scad>
 include <../params.scad>
 
 
-module reed_holder() {
+module reed_holder(bottom_text="S", mandrel_diameter=4.5) {
     /*
     Body of the reed holder.
     */
@@ -183,7 +183,11 @@ module reed_holder() {
             size=[scale_bar_width, reed_holder_notch_depth+0.01, reed_holder_notch_height],
             anchor=FRONT+BOTTOM,
         );
-        
+
+        // Bottom text
+        translate([(reed_holder_screw_x_position)/2, 0, 0])
+        rotate([0,0,180])
+            text3d(bottom_text, h=0.01, font="Arial", size=reed_holder_width/2, center=true, orient=DOWN);
     }
 }
 
@@ -205,8 +209,11 @@ module tightening_screw() {
 
 
 
+translate([0, -reed_holder_width/2-5, 0])
+    reed_holder(bottom_text="S", mandrel_diameter=mandrel_diameter);
 
-reed_holder();
+translate([0, reed_holder_width/2+5, 0])
+    reed_holder(bottom_text="L", mandrel_diameter=mandrel_diameter_large);
 
 translate([-20,0,0])
     tightening_screw();

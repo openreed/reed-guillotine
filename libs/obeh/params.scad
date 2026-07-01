@@ -30,11 +30,14 @@ handle_wall_tolerance=0.4;
 // 手柄孔公差 | Tolerance of the hole for the handle axis
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
-reed_holder_width_tolerance=-0.05;
+reed_holder_width_tolerance=-0.1;
 // 刀片咬合的公差，越大则顶部刀片最低位置越高，即两个刀片越不容易咬合 | Tolerance of the blade engagement, the larger it is, the higher the lowest position of the upper blade will be, which means the two blades will be less likely to engage with each other.
 blade_engagement_tolerance=0.2;
 // 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
 blade_front_back_fit_tolerance=0.3;
+// 哨片高度公差，越大则哨片位置越高 | Tolerance of the reed height, positive values will make the reed position higher and negative values will make the reed position lower
+reed_height_tolerance=0.4;
+
 
 /*[基座参数 | Base Parameters]*/
 // 基座长度，也是总长度 | Length of the base
@@ -232,6 +235,8 @@ mandrel_slot_depth=5;
 mandrel_slot_diameter=7.1;
 // 哨片锥直径 | Diameter of the mandrel
 mandrel_diameter=4.5;
+// 大号哨片锥直径 | Diameter of the large mandrel
+mandrel_diameter_large=4.7;
 // 固定螺丝头部宽度 | Diameter of the head of the tightening screw
 tightening_screw_head_diameter=13;
 // 固定螺丝头部高度 | Height of the head of the tightening screw
@@ -270,4 +275,4 @@ blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_positio
 upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_length;
 
 // 哨片座哨片中心高度 | Height of the center of reed in the reed holder
-reed_holder_center_height=scale_zero_z_position-base_height+slot_height;
+reed_holder_center_height=scale_zero_z_position-base_height+slot_height+reed_height_tolerance;
