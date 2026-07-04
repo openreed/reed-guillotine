@@ -1,4 +1,4 @@
-// 该文件包括了哨片断头台的参数 | This file includes parameters of the guillotine for the blade.
+// 该文件包括了哨片断头台的参数 | This file includes parameters of the reed guillotine
 
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
