@@ -35,8 +35,10 @@ reed_holder_width_tolerance=-0.1;
 blade_engagement_tolerance=0.1;
 // 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
 blade_front_back_fit_tolerance=0.4;
-// 哨片高度公差，越大则哨片位置越高 | Tolerance of the reed height, positive values will make the reed position higher and negative values will make the reed position lower
+// 哨片高度公差，越大则哨片位置越高 | Tolerance of the reed height, positive values will make the reed position higher and negative values will make the reed position lower.
 reed_height_tolerance=0.4;
+// 底部哨片座侧面缺口的公差，越大则底部哨片座侧面缺口越大 | Tolerance of the side notch on the bottom reed holder, positive values will make the side notch bigger.
+bottom_reed_holder_side_notch_tolerance=0.1;
 
 
 /*[基座参数 | Base Parameters]*/
@@ -105,9 +107,9 @@ hole_diameter=2.1;
 // 刀片上孔中心到刀刃的距离 | Distance between the center of the hole on the blade and the edge of the blade
 hole_edge_distance=7;
 // 刀片侧面缺口的宽度 | Width of the side notch on the blade
-side_notch_width=2.9;
+side_notch_width=3.0;
 // 刀片侧面缺口的长度 | Length of the side notch on the blade
-side_notch_length=3.8;
+side_notch_length=3.9;
 // 刀片侧面缺口中心到刀刃的距离 | Distance between the center of the side notch on the blade and the edge of the blade
 side_notch_edge_distance=9.6;
 // 刀片背部夹具的厚度 | Thickness of the back clamp for the blade
