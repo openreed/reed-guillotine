@@ -141,7 +141,7 @@ module build_body() {
         // bottom blade holder
         translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
         rotate([90,0,-90])
-            #blade_holder(height=cutting_block_length, is_bottom=true);
+            blade_holder(height=cutting_block_length, is_bottom=true);
         translate([length-slot_length+0.01, width/2, 0])
             // bottom blade seat
             difference() {
