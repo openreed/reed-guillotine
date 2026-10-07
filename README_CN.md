@@ -79,6 +79,10 @@ python render.py --list-versions
 
 所有参数定义在 `libs/obeh/params.scad` 中，按功能分组如下。
 
+`blade_mode="single"`（默认）采用下刀片和上方一体式垫块；改为 `blade_mode="double"` 则采用上下两片刀片及原上刀片座、夹片。单刀垫块的楔形高度由 `cutting_block_wedge_height=2.5` mm 控制，接触边缘圆角由 `cutting_block_tip_radius=1` mm 控制。打开 `assembly.scad`，或运行 `python3 render.py obeh --assembly-only`，即可渲染所选版本。
+
+垫块使用 `hull()` 将主体肩部与圆柱连接成圆角楔形。半径可以超过楔形高度的一半，圆柱允许进入实体主体部分；调整半径时，总高度（`blade_width`）和圆角最低点位置保持不变。单刀和双刀均为 `blade_engagement_tolerance` 正值留空、负值咬合。单刀模式下，它控制弹簧座几何限位处垫块最低点与下刀刃的有符号高度差。实物行程还受安装的弹簧和手柄影响。
+
 ### 公差参数
 
 这些参数用于微调零件配合，根据实际打印效果和组装体验进行调整。
@@ -100,8 +104,8 @@ python render.py --list-versions
 | `handle_wall_tolerance` | 0.4 | 手柄与墙之间的间隙公差。正值使手柄离墙更远 |
 | `handle_hole_tolerance` | 0.2 | 手柄孔公差 |
 | `reed_holder_width_tolerance` | -0.05 | 哨片座宽度公差，用于和滑槽配合 |
-| `blade_engagement_tolerance` | 0.2 | 刀片咬合公差。越大则顶部刀片最低位置越高，两刀片越不容易咬合 |
-| `blade_front_back_fit_tolerance` | 0.3 | 刀片前后配合公差。越大则顶部刀片相对底部刀片的 x 位置越大 |
+| `blade_engagement_tolerance` | 0.3 | 最低位置公差，单刀和双刀均为正值留空、负值咬合 |
+| `blade_front_back_fit_tolerance` | 0.4 | 刀片前后配合公差。每增加 0.1 mm，顶部刀片座增厚 0.1 mm，顶部刀片的 x 位置增加 0.1 mm；主体和底部夹片不变，顶部夹片相应变薄 |
 
 ### 基座参数
 
@@ -163,6 +167,7 @@ python render.py --list-versions
 |--------|--------|------|
 | `blade_protrusion_length` | 2 | 刀片从夹具中突出的长度 |
 | `side_notch_height` | 2 | 刀片侧面缺口卡座高度 |
+| `blade_clamp_height` | 1.885 | 底部刀片夹片厚度，独立于刀片前后配合公差；默认值保留原主体尺寸 |
 
 ### 顶部刀片夹具参数
 

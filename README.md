@@ -63,6 +63,12 @@ Pre-generated `.3mf` files are also available for direct download from MakerWorl
 
 All parameters are defined in `libs/obeh/params.scad`. See the [Chinese README](README_CN.md#参数说明) for the complete parameter table with descriptions.
 
+Set `blade_mode="single"` (the default) to assemble the lower blade with the solid upper cutting block, or `blade_mode="double"` to assemble both blades and the upper holder and clamp. The single-blade block uses `cutting_block_wedge_height=2.5` mm and `cutting_block_tip_radius=1` mm. Open `assembly.scad` or run `python3 render.py obeh --assembly-only` to render the selected version.
+
+The cutting block forms its rounded wedge with `hull()` between the block shoulder and a cylinder. The radius may exceed half the wedge height: the cylinder can overlap the solid main block. Radius changes preserve the finished block height (`blade_width`) and contact ridge position. In both modes, positive `blade_engagement_tolerance` leaves clearance at the lowest position, while negative values allow engagement. In single-blade mode, this is the signed height difference between the block's lowest point and the lower blade at the geometric spring-seat stop. Actual travel also depends on the installed spring and handle.
+
+`blade_front_back_fit_tolerance` adjusts the upper blade position by changing the upper blade holder thickness. The body, slider positions in the assembly, and bottom blade clamp stay fixed; the upper blade clamp becomes thinner as the holder thickens. The independent bottom clamp thickness, `blade_clamp_height`, defaults to 1.885 mm to preserve the existing body dimensions.
+
 The parameters are organized into the following groups:
 
 | Group | Description |

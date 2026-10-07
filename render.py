@@ -37,6 +37,7 @@ VERSIONS = {
             ("body",         "modules/body.scad"),
             ("blade",        "modules/blade.scad"),
             ("blade_holder", "modules/blade_holder.scad"),
+            ("cutting_block", "modules/cutting_block.scad"),
             ("handle",       "modules/handle.scad"),
             ("lid",          "modules/lid.scad"),
             ("reed_holder",  "modules/reed_holder.scad"),
