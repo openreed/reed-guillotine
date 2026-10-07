@@ -31,12 +31,12 @@ LIBS_DIR = PROJECT_ROOT / "libs"
 
 VERSIONS = {
     "obeh": {
-        "name": "Oboe / English Horn Reed Guillotine",
+        "name": "Oboe / English Horn Single-Blade Reed Guillotine",
         "assembly": "assembly.scad",
         "parts": [
             ("body",         "modules/body.scad"),
             ("blade",        "modules/blade.scad"),
-            ("blade_holder", "modules/blade_holder.scad"),
+            ("blade_holder", "modules/blade_holder.scad"),  # Lower blade clamp
             ("cutting_block", "modules/cutting_block.scad"),
             ("handle",       "modules/handle.scad"),
             ("lid",          "modules/lid.scad"),

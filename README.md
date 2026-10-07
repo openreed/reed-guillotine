@@ -63,11 +63,11 @@ Pre-generated `.3mf` files are also available for direct download from MakerWorl
 
 All parameters are defined in `libs/obeh/params.scad`. See the [Chinese README](README_CN.md#参数说明) for the complete parameter table with descriptions.
 
-Set `blade_mode="single"` (the default) to assemble the lower blade with the solid upper cutting block, or `blade_mode="double"` to assemble both blades and the upper holder and clamp. The single-blade block uses `cutting_block_wedge_height=2.5` mm and `cutting_block_tip_radius=1` mm. Open `assembly.scad` or run `python3 render.py obeh --assembly-only` to render the selected version.
+The assembly uses one fixed lower blade and a solid upper cutting block. The block uses `cutting_block_wedge_height=3` mm and `cutting_block_tip_radius=1.2` mm. Open `assembly.scad` or run `python3 render.py obeh --assembly-only` to render the assembly. `blade_holder.scad` renders only the lower blade clamp.
 
-The cutting block forms its rounded wedge with `hull()` between the block shoulder and a cylinder. The radius may exceed half the wedge height: the cylinder can overlap the solid main block. Radius changes preserve the finished block height (`blade_width`) and contact ridge position. In both modes, positive `blade_engagement_tolerance` leaves clearance at the lowest position, while negative values allow engagement. In single-blade mode, this is the signed height difference between the block's lowest point and the lower blade at the geometric spring-seat stop. Actual travel also depends on the installed spring and handle.
+The cutting block forms its rounded wedge with `hull()` between the block shoulder and a cylinder. The radius may exceed half the wedge height: the cylinder can overlap the solid main block. Radius changes preserve the finished block height (`blade_width`) and contact ridge position. Positive `blade_engagement_tolerance` leaves clearance at the lowest position, while negative values allow engagement. This is the signed height difference between the block's lowest point and the lower blade at the geometric spring-seat stop. Actual travel also depends on the installed spring and handle.
 
-`blade_front_back_fit_tolerance` adjusts the upper blade position by changing the upper blade holder thickness. The body, slider positions in the assembly, and bottom blade clamp stay fixed; the upper blade clamp becomes thinner as the holder thickens. The independent bottom clamp thickness, `blade_clamp_height`, defaults to 1.885 mm to preserve the existing body dimensions.
+`cutting_block_front_back_fit_tolerance` shifts the block's contact edge along x relative to the lower blade. The body, slider positions in the assembly, and lower blade clamp stay fixed. The independent lower clamp thickness, `blade_clamp_height`, defaults to 1.885 mm to preserve the existing body dimensions. Block slider and slot parameters use the `cutting_block_` prefix.
 
 The parameters are organized into the following groups:
 
@@ -79,7 +79,7 @@ The parameters are organized into the following groups:
 | Scale Parameters | Cutting scale markings |
 | Blade Parameters | Standard utility blade (009 RD) dimensions |
 | Blade Holder Parameters | Blade clamp geometry |
-| Upper Blade Holder Parameters | Upper blade holder slider and screw dimensions |
+| Cutting Block Parameters | Block sliders, wedge height, and contact edge radius |
 | Spring Parameters | Spring seat dimensions |
 | Wall Parameters | Side walls and screw holes |
 | Handle Parameters | Handle and axle geometry |
@@ -90,8 +90,9 @@ The parameters are organized into the following groups:
 
 ## 3D Printing Tips
 
-- Use ≤ 0.12 mm layer height for the blade holder, blade clamps, and reed holder
-- Enable supports for the blade holder and reed holder
+- Use ≤ 0.12 mm layer height for the lower blade clamp, cutting block, and reed holder
+- Print the cutting block with its flat back on the bed and the rounded wedge facing up
+- Enable supports for the reed holder
 - Multi-color printing makes scale markings more readable
 - **PETG** is recommended for better durability
 
@@ -111,6 +112,7 @@ The parameters are organized into the following groups:
 │   │       ├── body.scad
 │   │       ├── blade.scad
 │   │       ├── blade_holder.scad
+│   │       ├── cutting_block.scad
 │   │       ├── handle.scad
 │   │       ├── lid.scad
 │   │       └── reed_holder.scad

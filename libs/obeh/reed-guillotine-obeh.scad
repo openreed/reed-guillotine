@@ -13,11 +13,6 @@ include <BOSL2/screws.scad>
 // ==================== PARAMETERS ====================
 // 该文件包括了哨片断头台的参数 | This file includes parameters of the reed guillotine
 
-/*[版本选择 | Version Selection]*/
-// 刀片版本：single 使用下刀片和上垫块，double 使用上下两片刀片 | Blade mode: single uses the lower blade and upper cutting block; double uses both blades.
-blade_mode="single"; // [single:单刀 | Single blade, double:双刀 | Double blade]
-
-
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
 scale_tolerance=0.3;
@@ -35,10 +30,10 @@ bottom_blade_seat_tolerance=0.1;
 handle_axis_hole_tolerance=0.05;
 // 手柄转轴长度公差 | Tolerance of the length of the handle axis, positive values will make the handle axis longer and negative values will make the handle axis shorter
 handle_axis_length_tolerance=0.2;
-// 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
-upper_blade_holder_slot_tolerance=0.2;
-// 顶部刀片夹具宽度的公差，用来控制刀片座的滑动配合 | Tolerance of the width of the upper blade holder, used for controlling the sliding fit of the blade holder
-upper_blade_holder_width_tolerance=0.5;
+// 切割垫块滑槽的公差 | Tolerance of the slot for the cutting block
+cutting_block_slot_tolerance=0.2;
+// 切割垫块与前挡板的配合间隙 | Clearance between the cutting block and the front skirt
+cutting_block_width_tolerance=0.5;
 // 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid
 lid_groove_diameter_tolerance=0.1;
 // 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
@@ -49,10 +44,10 @@ handle_wall_tolerance=0.4;
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=-0.1;
-// 刀片最低位置公差，单刀和双刀均为正值留空、负值咬合 | Lowest-position tolerance for both blade modes: positive leaves clearance; negative allows engagement.
-blade_engagement_tolerance=0.3;
-// 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
-blade_front_back_fit_tolerance=0;
+// 垫块最低位置与下刀刃的高度差，正值留空、负值咬合 | Height difference between the block's lowest point and the lower blade: positive leaves clearance; negative allows engagement.
+blade_engagement_tolerance=0.1;
+// 垫块接触边缘相对于下刀刃的前后偏移，正值增大其x坐标 | Front-back offset of the cutting block contact edge relative to the lower blade; positive values increase its x coordinate.
+cutting_block_front_back_fit_tolerance=0;
 // 哨片高度公差，越大则哨片位置越高 | Tolerance of the reed height, positive values will make the reed position higher and negative values will make the reed position lower.
 reed_height_tolerance=0.4;
 // 底部哨片座侧面缺口的公差，越大则底部哨片座侧面缺口越大 | Tolerance of the side notch on the bottom reed holder, positive values will make the side notch bigger.
@@ -138,40 +133,33 @@ back_clamp_width=7;
 
 /*[刀片夹具参数 | Blade Holder Parameters]*/
 // 刀片突出部分的长度 | Length of the blade protrusion, which is the part of the blade that protrudes from the blade holder and can cut the reed
-blade_protrusion_length=2;
+blade_protrusion_length=1;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=2;
-// 底部刀片夹片厚度，独立于刀片前后配合公差；默认值保留原主体尺寸 | Bottom blade clamp thickness, independent of the blade front-back fit tolerance; the default preserves the existing body dimensions.
+// 底部刀片夹片厚度，独立于垫块前后偏移；默认值保留原主体尺寸 | Bottom blade clamp thickness, independent of the cutting block front-back offset; the default preserves the existing body dimensions.
 blade_clamp_height=1.885;
 
 
 
-/*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
-
-// 顶部刀片夹具的滑块尺寸 | Slider size of the upper blade holder
-upper_blade_holder_slider_size=4.7;
-// 顶部刀片夹具的滑块长度 | Slider length of the upper blade holder
-upper_blade_holder_slider_length=10;
-// 顶部刀片夹具的两个滑块的中心间距 | Center distance between the two sliders of the upper blade holder
-upper_blade_holder_slider_spacing=24;
-// 顶部刀片夹片螺孔沉头直径 | Countersunk diameter of the screw holes for the upper blade clamp
-upper_blade_clamp_screw_countersink_diameter=4.2;
-// 顶部刀片夹片螺孔沉头高度 | Countersunk height of the screw holes for the upper blade clamp
-upper_blade_clamp_screw_countersink_height=1.2;
-
-
 /*[切割垫块参数 | Cutting Block Parameters]*/
-// 单刀版本垫块底部楔形的高度 | Height of the wedge at the bottom of the single-blade cutting block
-cutting_block_wedge_height=2.5;
-// 单刀版本垫块接触边缘的圆角半径，改变半径时自动保持垫块高度和最低位置间隙 | Radius of the rounded contact edge; block height and lowest-position clearance remain constant when the radius changes.
-cutting_block_tip_radius=1;
+
+// 切割垫块的滑块尺寸 | Slider size of the cutting block
+cutting_block_slider_size=4.7;
+// 切割垫块的滑块长度 | Slider length of the cutting block
+cutting_block_slider_length=10;
+// 切割垫块的两个滑块的中心间距 | Center distance between the two sliders of the cutting block
+cutting_block_slider_spacing=24;
+// 垫块底部楔形的高度 | Height of the wedge at the bottom of the cutting block
+cutting_block_wedge_height=3;
+// 垫块接触边缘的圆角半径，改变半径时自动保持垫块高度和最低位置间隙 | Radius of the rounded contact edge; block height and lowest-position clearance remain constant when the radius changes.
+cutting_block_tip_radius=1.2;
 
 
 
 /*[弹簧参数 | Spring Parameters]*/
-// 弹簧座直径 | Diameter of the spring seat for the upper blade holder
+// 弹簧座直径 | Diameter of the spring seat for the cutting block
 spring_seat_diameter=3.9;
-// 弹簧座高度 | Height of the spring seat for the upper blade holder
+// 弹簧座高度 | Height of the spring seat for the cutting block
 spring_seat_height=4;
 
 
@@ -275,11 +263,8 @@ tightening_screw_height=18;
 
 
 /*[内部参数 | Internal Parameters]*/
-// 顶部刀片夹片的高度 | Height of the upper blade clamp
-upper_blade_clamp_height=length-slot_length - scale_zero_x_position - blade_thickness/2 - blade_front_back_fit_tolerance - upper_blade_holder_width_tolerance;
-
 slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
-cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
+bottom_blade_holder_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
 wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance-wall_holder_distance;
 wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position) + lid_back_thickness;
@@ -290,14 +275,14 @@ reed_holder_width=slot_top_width-reed_holder_width_tolerance;
 // 刀片槽长度 | Length of the blade slot
 blade_slot_length=blade_length+blade_length_tolerance;
 
-// 顶部刀片夹具的基准厚度，前后配合公差在 upper_blade_holder 中加入 | Nominal upper blade holder thickness; upper_blade_holder adds the front-back fit tolerance.
-upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2;
+// 切割垫块接触边缘后方的基准深度 | Nominal cutting block depth behind the contact edge.
+cutting_block_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2;
 
-// 刀片行程 | Blade travel distance
-blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
+// 切割垫块参考行程 | Reference travel distance of the cutting block
+cutting_block_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
 
-// 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
-upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_length;
+// 切割垫块滑槽的深度 | Depth of the slot for the cutting block
+cutting_block_slot_depth= cutting_block_travel_distance + spring_seat_height + cutting_block_slider_length;
 
 // 哨片座哨片中心高度 | Height of the center of reed in the reed holder
 reed_holder_center_height=scale_zero_z_position-base_height+slot_height+reed_height_tolerance;
@@ -450,7 +435,7 @@ module side_notch_clamp(
     }
 }
 
-module blade_holder(height, is_bottom=false) {
+module blade_holder(height) {
     difference() {
         // body
         cuboid(
@@ -476,65 +461,22 @@ module blade_holder(height, is_bottom=false) {
                 anchor=FRONT+BOTTOM
             );
         
-        if (is_bottom) {
-            // side notches
-            translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
+        // side notches
+        translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
+        side_notch_clamp(
+            width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
+            length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
+            height=height+0.02
+        );
+
+        translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
+        rotate([0,0,180])
             side_notch_clamp(
                 width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
                 length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
                 height=height+0.02
             );
 
-            translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
-            rotate([0,0,180])
-                side_notch_clamp(
-                    width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
-                    length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
-                    height=height+0.02
-                );
-        }
-        else {
-            // side notches
-            translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
-            side_notch_clamp(
-                width=side_notch_width,
-                length=side_notch_length + blade_length_tolerance/2 + 0.01,
-                height=height+0.02
-            );
-
-            translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
-            rotate([0,0,180])
-                side_notch_clamp(
-                    width=side_notch_width,
-                    length=side_notch_length + blade_length_tolerance/2 + 0.01,
-                    height=height+0.02
-                );
-        }
-
-    }
-
-}
-
-module upper_blade_holder(base_height){
-    // Adjust the blade face through holder thickness; assembly keeps the sliders aligned with the body slots.
-    holder_height = base_height + blade_front_back_fit_tolerance;
-    rotate([-90,0,0]) translate([0, -(blade_width-blade_protrusion_length), 0])
-    {
-        translate([0, blade_width-blade_protrusion_length, holder_height])
-        rotate([0,180,180])
-            blade_holder(height=holder_height, is_bottom=false);
-
-        // two sliders on the upper blade holder
-        translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, holder_height])
-            cuboid(
-                size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-                anchor=BACK+BOTTOM
-            );
-        translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, holder_height])
-            cuboid(
-                size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-                anchor=BACK+BOTTOM
-            );
     }
 
 }
@@ -576,16 +518,6 @@ module blade_clamp(height) {
             length=side_notch_length + blade_length_tolerance/2 - side_notch_tolerance + 0.01, 
             height=side_notch_height+0.02
         );
-}
-
-module upper_blade_clamp() {
-    difference() {
-        blade_clamp(height=upper_blade_clamp_height);
-
-        //translate([0, blade_width-hole_edge_distance, -0.01]) 
-        //    cylinder(d=upper_blade_clamp_screw_countersink_diameter, h=upper_blade_clamp_screw_countersink_height+0.01, anchor=BOTTOM, $fa=0.5, $fs=0.1);
-
-    }
 }
 
 module bottom_blade_clamp() {
@@ -725,16 +657,16 @@ module build_body() {
         // bottom blade holder
         translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
         rotate([90,0,-90])
-            blade_holder(height=cutting_block_length, is_bottom=true);
+            blade_holder(height=bottom_blade_holder_length);
         translate([length-slot_length+0.01, width/2, 0])
             // bottom blade seat
             difference() {
                 cuboid(
-                    size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_slot_length+0.01, scale_zero_z_position-blade_width],
+                    size=[bottom_blade_holder_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_slot_length+0.01, scale_zero_z_position-blade_width],
                     anchor=BOTTOM+RIGHT
                 );
                 // cut the bottom hole for clearing the cutted cane
-                translate([-(cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance), 0, -0.01])
+                translate([-(bottom_blade_holder_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance), 0, -0.01])
                 cuboid(
                     size=[bottom_hole_length+0.01, width-2*wall_thickness, scale_zero_z_position-blade_width+0.02], 
                     anchor=RIGHT+BOTTOM
@@ -743,7 +675,7 @@ module build_body() {
             }
             
         
-        // walls, which hold the upper blade holder and the handle
+        // walls, which hold the cutting block and the handle
         difference() {
             // basic walls
             union() {
@@ -810,22 +742,22 @@ module build_body() {
                     );
                 }
             
-            // cut the slot for the upper blade holder
+            // cut the slot for the cutting block
             //// left slot
-            translate([wall_right_x_position+0.02, width/2 - upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+            translate([wall_right_x_position+0.02, width/2 - cutting_block_slider_spacing/2, wall_height+base_height+0.01])
                 difference() {
                     // slot
                     cuboid(
                         size=[
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
-                            upper_blade_holder_slot_depth+0.01
+                            cutting_block_slider_size+cutting_block_slot_tolerance+0.01,
+                            cutting_block_slider_size+cutting_block_slot_tolerance,
+                            cutting_block_slot_depth+0.01
                         ], 
                         anchor=TOP+RIGHT
                     );
                     
                     // spring seat
-                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                    translate([-cutting_block_slider_size/2, 0, -cutting_block_slot_depth])
                         cylinder(
                             d=spring_seat_diameter, 
                             h=spring_seat_height, 
@@ -836,20 +768,20 @@ module build_body() {
                 }
                 
             //// right slot
-            translate([wall_right_x_position+0.02, width/2 + upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+            translate([wall_right_x_position+0.02, width/2 + cutting_block_slider_spacing/2, wall_height+base_height+0.01])
                 difference() {
                     // slot
                     cuboid(
                         size=[
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
-                            upper_blade_holder_slot_depth+0.01
+                            cutting_block_slider_size+cutting_block_slot_tolerance+0.01,
+                            cutting_block_slider_size+cutting_block_slot_tolerance,
+                            cutting_block_slot_depth+0.01
                         ], 
                         anchor=TOP+RIGHT
                     );
                     
                     // spring seat
-                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                    translate([-cutting_block_slider_size/2, 0, -cutting_block_slot_depth])
                         cylinder(
                             d=spring_seat_diameter, 
                             h=spring_seat_height, 
@@ -886,59 +818,59 @@ module build_body() {
 
 // ==================== MODULE: cutting_block ====================
 module cutting_block(
-    base_height=upper_blade_holder_base_height,
+    base_height=cutting_block_base_height,
     wedge_height=cutting_block_wedge_height,
     tip_radius=cutting_block_tip_radius
 ) {
     /*
-    Replaces the upper blade holder, blade, and clamp with one solid block.
-    Uses the same local coordinates and assembly transform as upper_blade_holder.
+    Solid upper pressure block for cutting with the fixed lower blade.
     The flat back lies at z=0 for printing, with the rounded wedge pointing up.
 
     Args:
-        base_height: float, nominal thickness of the upper blade holder
+        base_height: float, nominal depth behind the contact edge
         wedge_height: float, height of the wedge below the main block in assembly
         tip_radius: float, radius of the rounded contact edge
 
     Assembly placement:
-        translate([scale_zero_x_position - blade_thickness/2 + blade_front_back_fit_tolerance,
+        translate([scale_zero_x_position - blade_thickness/2 + cutting_block_front_back_fit_tolerance,
                    width/2, base_height+wall_height])
         rotate([180,0,-90])
             cutting_block();
     */
 
-    holder_height = base_height + blade_front_back_fit_tolerance;
-    clamp_height = upper_blade_clamp_height;
-    block_thickness = holder_height + blade_thickness + clamp_height;
-    front_offset = -blade_thickness - clamp_height;
+    back_depth = base_height + cutting_block_front_back_fit_tolerance;
+    front_depth = length-slot_length - scale_zero_x_position + blade_thickness/2 -
+        cutting_block_front_back_fit_tolerance - cutting_block_width_tolerance;
+    block_thickness = back_depth + front_depth;
+    front_offset = -front_depth;
     shoulder_height = blade_width - wedge_height;
-    // In assembly, this becomes x=scale_zero_x_position+blade_front_back_fit_tolerance.
+    // In assembly, this becomes x=scale_zero_x_position+cutting_block_front_back_fit_tolerance.
     tip_y = -blade_thickness/2;
 
-    assert(holder_height > 0 && clamp_height >= 0,
-           "The holder and clamp thicknesses must fit inside the body.");
+    assert(back_depth > 0 && front_depth > 0,
+           "The front and back depths must fit inside the body.");
     assert(wedge_height > 0 && wedge_height < blade_width,
            "The wedge height must be between zero and the blade width.");
     // The rounding may extend into the solid main block; it need not fit inside the wedge height.
-    tip_radius_limit = min(tip_y-front_offset, holder_height-tip_y, blade_width/2);
+    tip_radius_limit = min(tip_y-front_offset, back_depth-tip_y, blade_width/2);
     assert(tip_radius > 0 &&
            (tip_radius < tip_radius_limit || approx(tip_radius, tip_radius_limit)),
            "The tip radius must fit inside the block footprint and above the print bed.");
     // Compensate the spring seat's +0.01 z offset in body.scad.
     // Positive tolerance leaves clearance at the lowest point; negative allows engagement.
-    slider_length = upper_blade_holder_slider_length + blade_engagement_tolerance - 0.01;
+    slider_length = cutting_block_slider_length + blade_engagement_tolerance - 0.01;
     assert(slider_length > 0 && slider_length < shoulder_height,
            "The engagement must leave positive slider length below the wedge.");
 
     union() {
-        // Solid holder and clamp, including the space previously occupied by the blade.
+        // Solid main block.
         translate([0, front_offset, 0])
             cuboid(
                 size=[blade_slot_length, block_thickness, shoulder_height],
                 anchor=FRONT+BOTTOM
             );
 
-        // Wedge with a rounded contact edge at the original upper blade tip position.
+        // Wedge with a rounded contact edge above the lower blade.
         hull() {
             translate([0, front_offset, shoulder_height-0.01])
                 cuboid(
@@ -956,13 +888,13 @@ module cutting_block(
                 );
         }
 
-        // Two sliders matching the upper blade holder and the existing body slots.
-        for(x = [-upper_blade_holder_slider_spacing/2, upper_blade_holder_slider_spacing/2]) {
-            translate([x, holder_height-0.01, 0])
+        // Two sliders matching the body slots.
+        for(x = [-cutting_block_slider_spacing/2, cutting_block_slider_spacing/2]) {
+            translate([x, back_depth-0.01, 0])
                 cuboid(
                     size=[
-                        upper_blade_holder_slider_size,
-                        upper_blade_holder_slider_size+0.01,
+                        cutting_block_slider_size,
+                        cutting_block_slider_size+0.01,
                         slider_length
                     ],
                     anchor=FRONT+BOTTOM
@@ -1357,9 +1289,6 @@ module tightening_screw() {
 }
 
 // ==================== ASSEMBLY ====================
-assert(blade_mode == "single" || blade_mode == "double",
-       "blade_mode must be single or double.");
-
 // main body
 build_body();
 
@@ -1372,30 +1301,13 @@ rotate([90,0,90])
 
 translate([scale_zero_x_position - blade_thickness/2 - blade_clamp_height, width/2, scale_zero_z_position-blade_width])
 rotate([90,0,90]) 
-    blade_clamp(height=blade_clamp_height);
+    bottom_blade_clamp();
 
 
-// upper cutting block or blade settings
-if (blade_mode == "single") {
-    translate([scale_zero_x_position - blade_thickness/2 + blade_front_back_fit_tolerance, width/2, base_height+wall_height])
-    rotate([180,0,-90])
-        cutting_block();
-}
-else {
-    // Move the blade face by the same amount as the holder thickens, keeping its sliders at wall_right_x_position.
-    translate([scale_zero_x_position - blade_thickness/2 + blade_front_back_fit_tolerance, width/2, base_height+wall_height])
-    rotate([180,0,-90])
-        upper_blade_holder(base_height = upper_blade_holder_base_height);
-
-    translate([scale_zero_x_position + blade_front_back_fit_tolerance, width/2, base_height+wall_height-blade_width])
-    rotate([90,180,90])
-        color(c = [0.9,0.9,0.9])
-        blade();
-
-    translate([length-slot_length-upper_blade_holder_width_tolerance, width/2, base_height+wall_height])
-    rotate([-90,0,90])
-        blade_clamp(height=upper_blade_clamp_height);
-}
+// cutting block settings
+translate([scale_zero_x_position - blade_thickness/2 + cutting_block_front_back_fit_tolerance, width/2, base_height+wall_height])
+rotate([180,0,-90])
+    cutting_block();
 
 
 // handle settings
@@ -1430,4 +1342,4 @@ rotate([180,0,0])
     tightening_screw();
 
 
-echo("Blade travel:", blade_travel_distance);
+echo("Cutting block travel:", cutting_block_travel_distance);

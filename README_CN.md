@@ -2,29 +2,35 @@
 
 [[English](README.md) | [以中文阅读](README_CN.md)]
 
-> 本仓库是 OpenReed 簧片断头台的 OpenSCAD 参数化模型源码。
+> 本仓库是 OpenReed 哨片断头台的 OpenSCAD 参数化模型源码。
 > 产品介绍请访问[项目主页](https://openreed.github.io/oboe/reed-guillotine/)。
 
 ---
 
 ## 目录
 
-- [生成 3D 模型文件](#生成-3d-模型文件)
-- [参数说明](#参数说明)
-  - [公差参数](#公差参数)
-  - [基座参数](#基座参数)
-  - [滑槽参数](#滑槽参数)
-  - [刻度参数](#刻度参数)
-  - [刀片参数](#刀片参数)
-  - [刀片夹具参数](#刀片夹具参数)
-  - [顶部刀片夹具参数](#顶部刀片夹具参数)
-  - [弹簧参数](#弹簧参数)
-  - [墙参数](#墙参数)
-  - [手柄参数](#手柄参数)
-  - [顶盖参数](#顶盖参数)
-  - [哨片座参数](#哨片座参数)
-- [3D 打印建议](#3d-打印建议)
-- [项目结构](#项目结构)
+- [Reed Guillotine](#reed-guillotine)
+  - [目录](#目录)
+  - [生成 3D 模型文件](#生成-3d-模型文件)
+    - [前置依赖](#前置依赖)
+    - [使用渲染脚本](#使用渲染脚本)
+    - [直接下载预生成文件](#直接下载预生成文件)
+  - [参数说明](#参数说明)
+    - [公差参数](#公差参数)
+    - [基座参数](#基座参数)
+    - [滑槽参数](#滑槽参数)
+    - [刻度参数](#刻度参数)
+    - [刀片参数](#刀片参数)
+    - [刀片夹具参数](#刀片夹具参数)
+    - [切割垫块参数](#切割垫块参数)
+    - [弹簧参数](#弹簧参数)
+    - [墙参数](#墙参数)
+    - [手柄参数](#手柄参数)
+    - [顶盖参数](#顶盖参数)
+    - [哨片座参数](#哨片座参数)
+  - [3D 打印建议](#3d-打印建议)
+  - [项目结构](#项目结构)
+  - [许可](#许可)
 
 ---
 
@@ -79,9 +85,9 @@ python render.py --list-versions
 
 所有参数定义在 `libs/obeh/params.scad` 中，按功能分组如下。
 
-`blade_mode="single"`（默认）采用下刀片和上方一体式垫块；改为 `blade_mode="double"` 则采用上下两片刀片及原上刀片座、夹片。单刀垫块的楔形高度由 `cutting_block_wedge_height=2.5` mm 控制，接触边缘圆角由 `cutting_block_tip_radius=1` mm 控制。打开 `assembly.scad`，或运行 `python3 render.py obeh --assembly-only`，即可渲染所选版本。
+装配体采用固定下刀片和上方一体式垫块。垫块楔形高度由 `cutting_block_wedge_height=3` mm 控制，接触边缘圆角由 `cutting_block_tip_radius=1.2` mm 控制。打开 `assembly.scad`，或运行 `python3 render.py obeh --assembly-only`，即可渲染装配体。`blade_holder.scad` 单独渲染时只生成下刀片夹片。
 
-垫块使用 `hull()` 将主体肩部与圆柱连接成圆角楔形。半径可以超过楔形高度的一半，圆柱允许进入实体主体部分；调整半径时，总高度（`blade_width`）和圆角最低点位置保持不变。单刀和双刀均为 `blade_engagement_tolerance` 正值留空、负值咬合。单刀模式下，它控制弹簧座几何限位处垫块最低点与下刀刃的有符号高度差。实物行程还受安装的弹簧和手柄影响。
+垫块使用 `hull()` 将主体肩部与圆柱连接成圆角楔形。半径可以超过楔形高度的一半，圆柱允许进入实体主体部分；调整半径时，总高度（`blade_width`）和圆角最低点位置保持不变。`blade_engagement_tolerance` 正值留空、负值咬合，控制弹簧座几何限位处垫块最低点与下刀刃的有符号高度差。实物行程还受安装的弹簧和手柄影响。
 
 ### 公差参数
 
@@ -97,15 +103,15 @@ python render.py --list-versions
 | `bottom_blade_seat_tolerance` | 0.1 | 底部刀片座伸出长度公差 |
 | `handle_axis_hole_tolerance` | 0.05 | 手柄转轴孔公差 |
 | `handle_axis_length_tolerance` | 0.2 | 手柄转轴长度公差。正值使转轴更长 |
-| `upper_blade_holder_slot_tolerance` | 0.2 | 顶部刀片夹具滑槽公差 |
-| `upper_blade_holder_width_tolerance` | 0.6 | 顶部刀片夹具宽度公差，控制滑动配合 |
+| `cutting_block_slot_tolerance` | 0.2 | 垫块滑槽公差 |
+| `cutting_block_width_tolerance` | 0.5 | 垫块与前挡板的配合间隙 |
 | `lid_groove_diameter_tolerance` | 0.1 | 顶盖凹槽直径公差 |
 | `lid_groove_height_tolerance` | 0.5 | 顶盖凹槽高度公差 |
 | `handle_wall_tolerance` | 0.4 | 手柄与墙之间的间隙公差。正值使手柄离墙更远 |
 | `handle_hole_tolerance` | 0.2 | 手柄孔公差 |
 | `reed_holder_width_tolerance` | -0.05 | 哨片座宽度公差，用于和滑槽配合 |
-| `blade_engagement_tolerance` | 0.3 | 最低位置公差，单刀和双刀均为正值留空、负值咬合 |
-| `blade_front_back_fit_tolerance` | 0.4 | 刀片前后配合公差。每增加 0.1 mm，顶部刀片座增厚 0.1 mm，顶部刀片的 x 位置增加 0.1 mm；主体和底部夹片不变，顶部夹片相应变薄 |
+| `blade_engagement_tolerance` | 0.1 | 最低位置公差，正值留空、负值咬合 |
+| `cutting_block_front_back_fit_tolerance` | 0 | 垫块接触边缘相对于下刀刃的前后偏移；正值增大其 x 坐标，主体和滑块装配位置不变 |
 
 ### 基座参数
 
@@ -165,19 +171,19 @@ python render.py --list-versions
 
 | 参数名 | 默认值 | 说明 |
 |--------|--------|------|
-| `blade_protrusion_length` | 2 | 刀片从夹具中突出的长度 |
+| `blade_protrusion_length` | 1 | 刀片从夹具中突出的长度 |
 | `side_notch_height` | 2 | 刀片侧面缺口卡座高度 |
-| `blade_clamp_height` | 1.885 | 底部刀片夹片厚度，独立于刀片前后配合公差；默认值保留原主体尺寸 |
+| `blade_clamp_height` | 1.885 | 底部刀片夹片厚度，独立于垫块前后偏移；默认值保留原主体尺寸 |
 
-### 顶部刀片夹具参数
+### 切割垫块参数
 
 | 参数名 | 默认值 | 说明 |
 |--------|--------|------|
-| `upper_blade_holder_slider_size` | 4.7 | 顶部刀片夹具滑块尺寸 |
-| `upper_blade_holder_slider_length` | 10 | 顶部刀片夹具滑块长度 |
-| `upper_blade_holder_slider_spacing` | 24 | 两滑块中心间距 |
-| `upper_blade_clamp_screw_countersink_diameter` | 4.2 | 顶部刀片夹片螺孔沉头直径 |
-| `upper_blade_clamp_screw_countersink_height` | 1.2 | 顶部刀片夹片螺孔沉头高度 |
+| `cutting_block_slider_size` | 4.7 | 垫块滑块尺寸 |
+| `cutting_block_slider_length` | 10 | 垫块滑块基准长度 |
+| `cutting_block_slider_spacing` | 24 | 两滑块中心间距 |
+| `cutting_block_wedge_height` | 3 | 垫块底部楔形高度 |
+| `cutting_block_tip_radius` | 1.2 | 垫块接触边缘圆角半径 |
 
 ### 弹簧参数
 
@@ -252,8 +258,9 @@ python render.py --list-versions
 
 ## 3D 打印建议
 
-- **刀片夹具、刀片夹片、哨片座**建议使用 ≤ 0.12mm 层高以保证精度
-- **刀片夹具**和**哨片座**需要打印支撑
+- **下刀片夹片、切割垫块、哨片座**建议使用 ≤ 0.12mm 层高以保证精度
+- **切割垫块**以平背朝下、圆角楔形朝上的方向打印
+- **哨片座**需要打印支撑
 - 如有条件，使用多色打印可使刻度标记更清晰
 - 推荐使用 **PETG** 材料以获得更好的耐久性
 
@@ -273,6 +280,7 @@ python render.py --list-versions
 │   │       ├── body.scad
 │   │       ├── blade.scad
 │   │       ├── blade_holder.scad
+│   │       ├── cutting_block.scad
 │   │       ├── handle.scad
 │   │       ├── lid.scad
 │   │       └── reed_holder.scad

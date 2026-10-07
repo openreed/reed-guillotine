@@ -141,16 +141,16 @@ module build_body() {
         // bottom blade holder
         translate([length-slot_length+0.01, width/2, scale_zero_z_position-blade_width])
         rotate([90,0,-90])
-            blade_holder(height=cutting_block_length, is_bottom=true);
+            blade_holder(height=bottom_blade_holder_length);
         translate([length-slot_length+0.01, width/2, 0])
             // bottom blade seat
             difference() {
                 cuboid(
-                    size=[cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_slot_length+0.01, scale_zero_z_position-blade_width],
+                    size=[bottom_blade_holder_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance+wall_holder_distance, blade_slot_length+0.01, scale_zero_z_position-blade_width],
                     anchor=BOTTOM+RIGHT
                 );
                 // cut the bottom hole for clearing the cutted cane
-                translate([-(cutting_block_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance), 0, -0.01])
+                translate([-(bottom_blade_holder_length+blade_thickness+blade_clamp_height+bottom_blade_seat_tolerance), 0, -0.01])
                 cuboid(
                     size=[bottom_hole_length+0.01, width-2*wall_thickness, scale_zero_z_position-blade_width+0.02], 
                     anchor=RIGHT+BOTTOM
@@ -159,7 +159,7 @@ module build_body() {
             }
             
         
-        // walls, which hold the upper blade holder and the handle
+        // walls, which hold the cutting block and the handle
         difference() {
             // basic walls
             union() {
@@ -226,22 +226,22 @@ module build_body() {
                     );
                 }
             
-            // cut the slot for the upper blade holder
+            // cut the slot for the cutting block
             //// left slot
-            translate([wall_right_x_position+0.02, width/2 - upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+            translate([wall_right_x_position+0.02, width/2 - cutting_block_slider_spacing/2, wall_height+base_height+0.01])
                 difference() {
                     // slot
                     cuboid(
                         size=[
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
-                            upper_blade_holder_slot_depth+0.01
+                            cutting_block_slider_size+cutting_block_slot_tolerance+0.01,
+                            cutting_block_slider_size+cutting_block_slot_tolerance,
+                            cutting_block_slot_depth+0.01
                         ], 
                         anchor=TOP+RIGHT
                     );
                     
                     // spring seat
-                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                    translate([-cutting_block_slider_size/2, 0, -cutting_block_slot_depth])
                         cylinder(
                             d=spring_seat_diameter, 
                             h=spring_seat_height, 
@@ -252,20 +252,20 @@ module build_body() {
                 }
                 
             //// right slot
-            translate([wall_right_x_position+0.02, width/2 + upper_blade_holder_slider_spacing/2, wall_height+base_height+0.01])
+            translate([wall_right_x_position+0.02, width/2 + cutting_block_slider_spacing/2, wall_height+base_height+0.01])
                 difference() {
                     // slot
                     cuboid(
                         size=[
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance+0.01, 
-                            upper_blade_holder_slider_size+upper_blade_holder_slot_tolerance, 
-                            upper_blade_holder_slot_depth+0.01
+                            cutting_block_slider_size+cutting_block_slot_tolerance+0.01,
+                            cutting_block_slider_size+cutting_block_slot_tolerance,
+                            cutting_block_slot_depth+0.01
                         ], 
                         anchor=TOP+RIGHT
                     );
                     
                     // spring seat
-                    translate([-upper_blade_holder_slider_size/2, 0, -upper_blade_holder_slot_depth])
+                    translate([-cutting_block_slider_size/2, 0, -cutting_block_slot_depth])
                         cylinder(
                             d=spring_seat_diameter, 
                             h=spring_seat_height, 

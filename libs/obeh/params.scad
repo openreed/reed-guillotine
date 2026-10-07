@@ -1,10 +1,5 @@
 // 该文件包括了哨片断头台的参数 | This file includes parameters of the reed guillotine
 
-/*[版本选择 | Version Selection]*/
-// 刀片版本：single 使用下刀片和上垫块，double 使用上下两片刀片 | Blade mode: single uses the lower blade and upper cutting block; double uses both blades.
-blade_mode="single"; // [single:单刀 | Single blade, double:双刀 | Double blade]
-
-
 /*[公差 | Tolerances]*/
 // 刻度的公差，正值会使切出的哨片长度更大，负值会使长度更小 | Tolerance of the scale, positive values will make the cut reed longer and negative values will make it shorter
 scale_tolerance=0.3;
@@ -22,10 +17,10 @@ bottom_blade_seat_tolerance=0.1;
 handle_axis_hole_tolerance=0.05;
 // 手柄转轴长度公差 | Tolerance of the length of the handle axis, positive values will make the handle axis longer and negative values will make the handle axis shorter
 handle_axis_length_tolerance=0.2;
-// 顶部刀片夹具滑槽的公差 | Tolerance of the slot for the upper blade holder
-upper_blade_holder_slot_tolerance=0.2;
-// 顶部刀片夹具宽度的公差，用来控制刀片座的滑动配合 | Tolerance of the width of the upper blade holder, used for controlling the sliding fit of the blade holder
-upper_blade_holder_width_tolerance=0.5;
+// 切割垫块滑槽的公差 | Tolerance of the slot for the cutting block
+cutting_block_slot_tolerance=0.2;
+// 切割垫块与前挡板的配合间隙 | Clearance between the cutting block and the front skirt
+cutting_block_width_tolerance=0.5;
 // 顶盖上凹槽直径公差 | Tolerance of the groove diameter on the lid
 lid_groove_diameter_tolerance=0.1;
 // 顶盖上凹槽高度公差 | Tolerance of the groove height on the lid
@@ -36,10 +31,10 @@ handle_wall_tolerance=0.4;
 handle_hole_tolerance=0.2;
 // 哨片座宽度公差，用于和滑槽的配合 | Tolerance of the width of the reed holder, for assemblying with the slot on the base.
 reed_holder_width_tolerance=-0.1;
-// 刀片最低位置公差，单刀和双刀均为正值留空、负值咬合 | Lowest-position tolerance for both blade modes: positive leaves clearance; negative allows engagement.
+// 垫块最低位置与下刀刃的高度差，正值留空、负值咬合 | Height difference between the block's lowest point and the lower blade: positive leaves clearance; negative allows engagement.
 blade_engagement_tolerance=0.1;
-// 刀片前后配合的公差，越大则顶部刀片的x位置比底部刀片的x位置越大 | Tolerance of the blade front-back fit, the larger it is, the larger the x position of the upper blade will be compared to the x position of the bottom blade.
-blade_front_back_fit_tolerance=0;
+// 垫块接触边缘相对于下刀刃的前后偏移，正值增大其x坐标 | Front-back offset of the cutting block contact edge relative to the lower blade; positive values increase its x coordinate.
+cutting_block_front_back_fit_tolerance=0;
 // 哨片高度公差，越大则哨片位置越高 | Tolerance of the reed height, positive values will make the reed position higher and negative values will make the reed position lower.
 reed_height_tolerance=0.4;
 // 底部哨片座侧面缺口的公差，越大则底部哨片座侧面缺口越大 | Tolerance of the side notch on the bottom reed holder, positive values will make the side notch bigger.
@@ -128,37 +123,30 @@ back_clamp_width=7;
 blade_protrusion_length=1;
 // 刀片侧面缺口卡座的高度 | Height of the side notch clamp on the blade holder
 side_notch_height=2;
-// 底部刀片夹片厚度，独立于刀片前后配合公差；默认值保留原主体尺寸 | Bottom blade clamp thickness, independent of the blade front-back fit tolerance; the default preserves the existing body dimensions.
-blade_clamp_height=1.885;
+// 底部刀片夹片厚度，独立于垫块前后偏移；默认值保留原主体尺寸 | Bottom blade clamp thickness, independent of the cutting block front-back offset; the default preserves the existing body dimensions.
+blade_clamp_height=2;
 
-
-
-/*[顶部刀片夹具参数 | Upper Blade Holder Parameters]*/
-
-// 顶部刀片夹具的滑块尺寸 | Slider size of the upper blade holder
-upper_blade_holder_slider_size=4.7;
-// 顶部刀片夹具的滑块长度 | Slider length of the upper blade holder
-upper_blade_holder_slider_length=10;
-// 顶部刀片夹具的两个滑块的中心间距 | Center distance between the two sliders of the upper blade holder
-upper_blade_holder_slider_spacing=24;
-// 顶部刀片夹片螺孔沉头直径 | Countersunk diameter of the screw holes for the upper blade clamp
-upper_blade_clamp_screw_countersink_diameter=4.2;
-// 顶部刀片夹片螺孔沉头高度 | Countersunk height of the screw holes for the upper blade clamp
-upper_blade_clamp_screw_countersink_height=1.2;
 
 
 /*[切割垫块参数 | Cutting Block Parameters]*/
-// 单刀版本垫块底部楔形的高度 | Height of the wedge at the bottom of the single-blade cutting block
+
+// 切割垫块的滑块尺寸 | Slider size of the cutting block
+cutting_block_slider_size=4.7;
+// 切割垫块的滑块长度 | Slider length of the cutting block
+cutting_block_slider_length=10;
+// 切割垫块的两个滑块的中心间距 | Center distance between the two sliders of the cutting block
+cutting_block_slider_spacing=24;
+// 垫块底部楔形的高度 | Height of the wedge at the bottom of the cutting block
 cutting_block_wedge_height=3;
-// 单刀版本垫块接触边缘的圆角半径，改变半径时自动保持垫块高度和最低位置间隙 | Radius of the rounded contact edge; block height and lowest-position clearance remain constant when the radius changes.
+// 垫块接触边缘的圆角半径，改变半径时自动保持垫块高度和最低位置间隙 | Radius of the rounded contact edge; block height and lowest-position clearance remain constant when the radius changes.
 cutting_block_tip_radius=1.2;
 
 
 
 /*[弹簧参数 | Spring Parameters]*/
-// 弹簧座直径 | Diameter of the spring seat for the upper blade holder
+// 弹簧座直径 | Diameter of the spring seat for the cutting block
 spring_seat_diameter=3.9;
-// 弹簧座高度 | Height of the spring seat for the upper blade holder
+// 弹簧座高度 | Height of the spring seat for the cutting block
 spring_seat_height=4;
 
 
@@ -262,11 +250,8 @@ tightening_screw_height=18;
 
 
 /*[内部参数 | Internal Parameters]*/
-// 顶部刀片夹片的高度 | Height of the upper blade clamp
-upper_blade_clamp_height=length-slot_length - scale_zero_x_position - blade_thickness/2 - blade_front_back_fit_tolerance - upper_blade_holder_width_tolerance;
-
 slot_top_corner_fillet_length = slot_top_corner_fillet / tan(slot_bottom_angle/2);
-cutting_block_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
+bottom_blade_holder_length = length - slot_length - blade_thickness/2 - scale_zero_x_position;
 wall_height = handle_axis_z_position + handle_axis_diameter/2 + handle_axis_hole_tolerance/2 - base_height;
 wall_right_x_position = scale_zero_x_position - blade_thickness/2 - blade_clamp_height - bottom_blade_seat_tolerance-wall_holder_distance;
 wall_total_length = wall_length + wall_skirt_thickness + (length-slot_length-wall_right_x_position) + lid_back_thickness;
@@ -277,14 +262,14 @@ reed_holder_width=slot_top_width-reed_holder_width_tolerance;
 // 刀片槽长度 | Length of the blade slot
 blade_slot_length=blade_length+blade_length_tolerance;
 
-// 顶部刀片夹具的基准厚度，前后配合公差在 upper_blade_holder 中加入 | Nominal upper blade holder thickness; upper_blade_holder adds the front-back fit tolerance.
-upper_blade_holder_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2;
+// 切割垫块接触边缘后方的基准深度 | Nominal cutting block depth behind the contact edge.
+cutting_block_base_height=scale_zero_x_position - wall_right_x_position - blade_thickness/2;
 
-// 刀片行程 | Blade travel distance
-blade_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
+// 切割垫块参考行程 | Reference travel distance of the cutting block
+cutting_block_travel_distance = wall_height+base_height-blade_width-scale_zero_z_position;
 
-// 顶部刀片夹具滑槽的深度 | Depth of the slot for the upper blade holder
-upper_blade_holder_slot_depth= blade_travel_distance + spring_seat_height + upper_blade_holder_slider_length;
+// 切割垫块滑槽的深度 | Depth of the slot for the cutting block
+cutting_block_slot_depth= cutting_block_travel_distance + spring_seat_height + cutting_block_slider_length;
 
 // 哨片座哨片中心高度 | Height of the center of reed in the reed holder
 reed_holder_center_height=scale_zero_z_position-base_height+slot_height+reed_height_tolerance;

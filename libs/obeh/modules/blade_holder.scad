@@ -1,4 +1,4 @@
-// This file models the top and bottom blade holder of the guillotine.
+// This file models the lower blade holder and clamp of the guillotine.
 
 include <BOSL2/std.scad>
 
@@ -35,7 +35,7 @@ module side_notch_clamp(
 }
 
 
-module blade_holder(height, is_bottom=false) {
+module blade_holder(height) {
     difference() {
         // body
         cuboid(
@@ -61,66 +61,22 @@ module blade_holder(height, is_bottom=false) {
                 anchor=FRONT+BOTTOM
             );
         
-        if (is_bottom) {
-            // side notches
-            translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
+        // side notches
+        translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
+        side_notch_clamp(
+            width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
+            length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
+            height=height+0.02
+        );
+
+        translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
+        rotate([0,0,180])
             side_notch_clamp(
                 width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
                 length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
                 height=height+0.02
             );
 
-            translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
-            rotate([0,0,180])
-                side_notch_clamp(
-                    width=side_notch_width + bottom_reed_holder_side_notch_tolerance,
-                    length=side_notch_length + bottom_reed_holder_side_notch_tolerance + blade_length_tolerance/2 + 0.01,
-                    height=height+0.02
-                );
-        }
-        else {
-            // side notches
-            translate([-blade_slot_length/2-0.01, blade_width-side_notch_edge_distance, -0.01])
-            side_notch_clamp(
-                width=side_notch_width,
-                length=side_notch_length + blade_length_tolerance/2 + 0.01,
-                height=height+0.02
-            );
-
-            translate([blade_slot_length/2+0.01, blade_width-side_notch_edge_distance, -0.01])
-            rotate([0,0,180])
-                side_notch_clamp(
-                    width=side_notch_width,
-                    length=side_notch_length + blade_length_tolerance/2 + 0.01,
-                    height=height+0.02
-                );
-        }
-
-    }
-
-}
-
-
-module upper_blade_holder(base_height){
-    // Adjust the blade face through holder thickness; assembly keeps the sliders aligned with the body slots.
-    holder_height = base_height + blade_front_back_fit_tolerance;
-    rotate([-90,0,0]) translate([0, -(blade_width-blade_protrusion_length), 0])
-    {
-        translate([0, blade_width-blade_protrusion_length, holder_height])
-        rotate([0,180,180])
-            blade_holder(height=holder_height, is_bottom=false);
-
-        // two sliders on the upper blade holder
-        translate([-upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, holder_height])
-            cuboid(
-                size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-                anchor=BACK+BOTTOM
-            );
-        translate([upper_blade_holder_slider_spacing/2, blade_width-blade_protrusion_length, holder_height])
-            cuboid(
-                size=[upper_blade_holder_slider_size, upper_blade_holder_slider_length + blade_engagement_tolerance, upper_blade_holder_slider_size],
-                anchor=BACK+BOTTOM
-            );
     }
 
 }
@@ -166,29 +122,10 @@ module blade_clamp(height) {
 }
 
 
-module upper_blade_clamp() {
-    difference() {
-        blade_clamp(height=upper_blade_clamp_height);
-
-        //translate([0, blade_width-hole_edge_distance, -0.01]) 
-        //    cylinder(d=upper_blade_clamp_screw_countersink_diameter, h=upper_blade_clamp_screw_countersink_height+0.01, anchor=BOTTOM, $fa=0.5, $fs=0.1);
-
-    }
-}
-
-
 module bottom_blade_clamp() {
     blade_clamp(height=blade_clamp_height);
 }
 
 
-// upper blade holder clamp
-translate([-30, 0, 0]) 
-    upper_blade_clamp();
-
-// bottom blade holder clamp
-translate([-30,-20,0]) 
-    bottom_blade_clamp();
-
-translate([30, 0, 0])
-upper_blade_holder(base_height = upper_blade_holder_base_height);
+// Lower blade clamp, printed flat on the bed.
+bottom_blade_clamp();
